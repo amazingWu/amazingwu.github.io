@@ -181,15 +181,15 @@ th {
 }
 ::selection {
   background: #262a30;
-  color: #fff;
+  color: #222;
 }
 body {
   position: relative;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 14px;
-  line-height: 2;
-  color: #555;
-  background: #fff;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #000;
+  background: #f5f5f5;
 }
 @media (max-width: 767px) {
   body {
@@ -203,7 +203,7 @@ body {
 }
 @media (min-width: 1600px) {
   body {
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 h1,
@@ -478,7 +478,7 @@ pre,
   font-size: 13px;
   color: #4d4d4c;
   background: #f7f7f7;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 pre,
 code {
@@ -835,7 +835,7 @@ pre .javascript .function {
   display: block;
   width: 22px;
   height: 2px;
-  background: #555;
+  background: #000;
   border-radius: 1px;
 }
 .btn-bar+.btn-bar {
@@ -927,7 +927,7 @@ pre .javascript .function {
 .back-to-top {
   display: none;
   margin: 15px -10px -20px;
-  background: #fff;
+  background: #f5f5f5;
   font-size: 12px;
   opacity: 1;
   cursor: pointer;
@@ -1102,7 +1102,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: 10px auto 15px;
   text-align: center;
-  font-size: 14px;
+  font-size: 15px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1688,7 +1688,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #656cff;
+  background: #8825cc;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2685,7 +2685,7 @@ hr {
 .post-button a {
   margin: 0 8px 8px 0 !important;
   padding: 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #666;
   background: none;
   border: none;
@@ -2694,12 +2694,12 @@ hr {
 }
 @media (max-width: 767px) {
   .post-button a {
-    font-size: 12px;
+    font-size: 13px;
   }
 }
 @media (min-width: 1600px) {
   .post-button a {
-    font-size: 16px;
+    font-size: 17px;
   }
 }
 .post-button a:hover {
