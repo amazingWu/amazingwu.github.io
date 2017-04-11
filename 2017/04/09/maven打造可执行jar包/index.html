@@ -164,6 +164,7 @@
          <p class="a-posted-on">
           2017-04-09
           </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <!-- Post Main Content -->
         <div class="entry-content">
           <p>在开发java Web时，有时我们会使用嵌入式jetty来运行，项目完成后，如果能够直接运行war包从而启动jetty来运行war包那就非常完美了，本文将讲解如何在项目中整合jetty 9，并构造可执行的war包（打包前和打包后都能随时启动）。<br><a id="more"></a><br>1.首先添加jetty 9的依赖（本文暂时只用到了jetty的以下依赖，读者根据自己的项目需要增加）<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>9.2.7.v20150116<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.eclipse.jetty<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jetty-webapp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>9.2.7.v20150116<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure></p>
@@ -218,6 +219,7 @@ Archiver-Version: Plexus Archiver
     <!-- Pre or Next -->
     
 	<div class="container" >
+		
            <ul class="pager">
     	     
       	     <li class="previous">
@@ -227,6 +229,7 @@ Archiver-Version: Plexus Archiver
            
           </ul>
        </div>
+	   		  <p class="a-posted-on">浏览量：<span id="busuanzi_value_site_pv"></span></p>
 　　　　<!-- Comments -->
     <div class="container">
       
@@ -234,6 +237,11 @@ Archiver-Version: Plexus Archiver
   <!-- <h1 class="title">Comments</h1> -->
 
   
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130436"></script>
+		<!-- UY END -->
+	
 </section>
 
 
