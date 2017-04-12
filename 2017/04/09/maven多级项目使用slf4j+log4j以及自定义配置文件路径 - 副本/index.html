@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
 
 <!-- Head tag -->
 <head>
@@ -237,7 +251,7 @@ log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout
   
 		<!-- UY BEGIN -->
 		<div id="uyan_frame"></div>
-		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130436"></script>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=theme.youyan_uid"></script>
 		<!-- UY END -->
 	
 </section>
