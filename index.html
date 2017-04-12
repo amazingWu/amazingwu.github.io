@@ -207,7 +207,7 @@
           <div class="container">
   <article class="post">
     <h1 class="entry-title">
-      <a href="/2017/04/09/maven打造可执行jar包/" rel="bookmark">
+      <a href="/2017/04/07/maven打造可执行jar包/" rel="bookmark">
         maven打造可执行war包  
       </a>
     </h1>
@@ -218,13 +218,13 @@
       </p>
     </div>
     <div class="post-more-link text-center">
-            <a class="btn" href="/2017/04/09/maven打造可执行jar包/" rel="contents">
+            <a class="btn" href="/2017/04/07/maven打造可执行jar包/" rel="contents">
               阅读全文 »
             </a>
     </div>
     <p class="posted-on">
         <i class="fa fa-calendar" aria-hidden="true"></i>
-    	2017-04-09
+    	2017-04-07
     </p>
     <div class="tags-links">
       <i class="fa fa-tags" aria-hidden="true"></i>
@@ -248,7 +248,7 @@
           <div class="container">
   <article class="post">
     <h1 class="entry-title">
-      <a href="/2017/04/09/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" rel="bookmark">
+      <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" rel="bookmark">
         maven多级项目使用slf4j+log4j，以及自定义配置文件路径  
       </a>
     </h1>
@@ -269,13 +269,13 @@
       </p>
     </div>
     <div class="post-more-link text-center">
-            <a class="btn" href="/2017/04/09/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" rel="contents">
+            <a class="btn" href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" rel="contents">
               阅读全文 »
             </a>
     </div>
     <p class="posted-on">
         <i class="fa fa-calendar" aria-hidden="true"></i>
-    	2017-04-09
+    	2017-03-23
     </p>
     <div class="tags-links">
       <i class="fa fa-tags" aria-hidden="true"></i>
@@ -286,6 +286,86 @@
       
       <a href="/tags/log4j/" rel="tag">
         log4j
+      </a>
+      
+    </div>
+    
+  </article>
+</div>
+
+        </div> 
+    
+        <div class="article">
+          <div class="container">
+  <article class="post">
+    <h1 class="entry-title">
+      <a href="/2017/03/15/jvm垃圾收集算法/" rel="bookmark">
+        jvm垃圾收集算法  
+      </a>
+    </h1>
+    
+    <div class="entry-content">
+      <p>
+        <blockquote>
+<p>来源：JVM虚拟机</p>
+</blockquote>
+<h1 id="标记-清除法"><a href="#标记-清除法" class="headerlink" title="标记-清除法"></a>标记-清除法</h1><p>最基础的收集算法是“标记-清除”（Mark-Sweep）算法，如同它的名字一样，算法分<br>为“标记”和“清除”两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有<br>被标记的对象，它的标记过程其实在前一节讲述对象标记判定时已经介绍过了。 之所以说它<br>是最基础的收集算法，是因为后续的收集算法都是基于这种思路并对其不足进行改进而得到<br>的。 它的主要不足有两个：==一个是效率问题，标记和清除两个过程的效率都不高；另一个是<br>空间问题，标记清除之后会产生大量不连续的内存碎片==，空间碎片太多可能会导致以后在程<br>序运行过程中需要分配较大对象时，无法找到足够的连续内存而不得不提前触发另一次垃圾<br>收集动作。<br>
+      </p>
+    </div>
+    <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/15/jvm垃圾收集算法/" rel="contents">
+              阅读全文 »
+            </a>
+    </div>
+    <p class="posted-on">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    	2017-03-15
+    </p>
+    <div class="tags-links">
+      <i class="fa fa-tags" aria-hidden="true"></i>
+      
+      <a href="/tags/jvm/" rel="tag">
+        jvm
+      </a>
+      
+    </div>
+    
+  </article>
+</div>
+
+        </div> 
+    
+        <div class="article">
+          <div class="container">
+  <article class="post">
+    <h1 class="entry-title">
+      <a href="/2017/03/15/java对象的创建过程/" rel="bookmark">
+        java对象的创建过程  
+      </a>
+    </h1>
+    
+    <div class="entry-content">
+      <p>
+        <h1 id="对象的创建过程"><a href="#对象的创建过程" class="headerlink" title="对象的创建过程"></a>对象的创建过程</h1><blockquote>
+<p>来源：JVM虚拟机</p>
+</blockquote>
+<p>Java是一门面向对象的编程语言，在Java程序运行过程中无时无刻都有对象被创建出来。在语言层面上，创建对象（例如克隆、反序列化）通常仅仅是一个new关键字而已，而在虚拟机中，对象（文中讨论的对象限于普通Java对象，不包括数组和Class对象等）的创建又是怎样一个过程呢？<br>
+      </p>
+    </div>
+    <div class="post-more-link text-center">
+            <a class="btn" href="/2017/03/15/java对象的创建过程/" rel="contents">
+              阅读全文 »
+            </a>
+    </div>
+    <p class="posted-on">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    	2017-03-15
+    </p>
+    <div class="tags-links">
+      <i class="fa fa-tags" aria-hidden="true"></i>
+      
+      <a href="/tags/jvm/" rel="tag">
+        jvm
       </a>
       
     </div>

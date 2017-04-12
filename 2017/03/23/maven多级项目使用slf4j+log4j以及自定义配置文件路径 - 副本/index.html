@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="目前就读于北京理工大学软件学院">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="AmazingWu">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="maven多级项目使用slf4j+log4j，以及自定义配置文件路径"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="目前就读于北京理工大学软件学院" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="AmazingWu"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>maven多级项目使用slf4j+log4j，以及自定义配置文件路径 - AmazingWu</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/header.png" alt="AmazingWu" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>AmazingWu</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于我
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                感兴趣的项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="/photo">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+            <li>
+              <a href="/atom.xml">
+                
+                  <i class="fa fa-send "></i>
+                
+                RSS
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            maven多级项目使用slf4j+log4j，以及自定义配置文件路径
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-03-23
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>我的maven多级结构如下：</p>
+<pre><code>sysimple
+    |--integration
+    |--commons
+        |--pom.xml
+    |--plugins
+        |--pom.xml
+    |--web
+        |--pom.xml
+    |--pom.xml
+</code></pre><p>其中依赖情况是： <a id="more"></a><br>web依赖于commons和plugins。plugins依赖于commons。integration中定义了打包的方法与资源文件。</p>
+<p>首先在sysimple/pom.xml中管理slf4j的版本：</p>
+<pre><code>在&lt;dependencyManagement&gt;&lt;/dependencyManagement&gt;中间添加：
+    &lt;dependency&gt;
+         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+         &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+         &lt;version&gt;1.7.7&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+         &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+         &lt;version&gt;1.7.7&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre><p>由于所有的模块均引用commons，因此只需要在commons中添加slf4j的依赖即可：</p>
+<pre><code>&lt;dependency&gt;
+     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+     &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+     &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre><p>下面即可使用slf4j，在需要使用的地方以如下方式使用：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartWeb</span> &#123;</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(StartWeb.<span class="keyword">class</span>);</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args)&#123;</div><div class="line">		logger.info(<span class="string">"this is a example"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>默认情况下，slf4j-log4j会在src/main/java中查找log4j.properties，如果需要指定配置文件的位置，需要在启动时手动加入Jvm的参数，我的例子中添加了-Dlog4j.configuration=file:../integration/conf/sysimple-log4j.properties。在使用绝对路径时是不需要使用file:的，linux端也不需要file:。在运行的时候，slf4j会根据你指定的路径去加载配置文件。配置文件的内容我给出以下例子， 读者可以另行查找配置文件的格式：</p>
+<pre><code>log4j.rootLogger=INFO,system.out  
+log4j.appender.system.out=org.apache.log4j.ConsoleAppender  
+log4j.appender.system.out.layout=org.apache.log4j.PatternLayout  
+log4j.appender.system.out.layout.ConversionPattern=SysimpleServer Logger--&gt;%5p{%F:%L}-%m%n 
+log4j.logger.thisProject.file=INFO,thisProject.file.out  
+log4j.appender.thisProject.file.out=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.thisProject.file.out.File=../integration/logs/sysimple-logs.log   
+log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout 
+</code></pre>
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/03/15/jvm垃圾收集算法/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2017/04/07/maven打造可执行jar包/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+	   		  <p class="a-posted-on">浏览量：<span id="busuanzi_value_site_pv"></span></p>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=theme.youyan_uid"></script>
+		<!-- UY END -->
+	
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>AmazingWu &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>AmazingWu的技术部落</span>
+    
+  </p>
+  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
