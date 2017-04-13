@@ -68,7 +68,7 @@
   <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
-<script src="https://leancloud.cn/scripts/lib/av-0.4.6.min.js"></script>
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
   <script>AV.initialize("vKLeKzRXEBuUzhmWMw2T1uee-gzGzoHsz", "Jg5qaNmuHFK0hn5xQ4YfpBc6");</script>
 </head>
 
@@ -134,20 +134,11 @@
             </li>
           
             <li>
-              <a href="/photo">
+              <a href="http://10.4.20.229:3001">
                 
                   <i class="fa fa-photo "></i>
                 
                 相册
-              </a>
-            </li>
-          
-            <li>
-              <a href="/atom.xml">
-                
-                  <i class="fa fa-send "></i>
-                
-                RSS
               </a>
             </li>
           
@@ -376,6 +367,7 @@ function addCount (Counter) {
 $(function(){
         var Counter=AV.Object.extend("Counter");
         //only increse visit counting when intering a page
+		alert("hello");
         if ($('.article-title').length == 1)
            addCount(Counter);
         var query=new AV.Query(Counter);
