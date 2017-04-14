@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="AmazingWu"/>
+      <meta property="og:title" content="Storm和Spark streaming对比"/>
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
   <meta property="og:site_name" content="AmazingWu"/>
   <!--Type page-->
   
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
   
   <!--Page Cover-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>maven - AmazingWu</title>
+  <title>Storm和Spark streaming对比 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -154,74 +154,104 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">maven</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2017</h2>
-          <ul class="list">
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Storm和Spark streaming对比
             
-  <li>
-    <span class="date">
-      2017-04-07
-    </span>
-    <a href="/2017/04/07/maven打造可执行jar包/" class="title">
-      maven打造可执行war包
-    </a>
-  </li>
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-02-28
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h3 id="Spark-Streaming与Storm的应用场景"><a href="#Spark-Streaming与Storm的应用场景" class="headerlink" title="Spark Streaming与Storm的应用场景"></a>Spark Streaming与Storm的应用场景</h3><h5 id="对于Storm来说："><a href="#对于Storm来说：" class="headerlink" title="对于Storm来说："></a>对于Storm来说：</h5><p>1、建议在那种需要纯实时，不能忍受1秒以上延迟的场景下使用，比如实时金融系统，要求纯实时进行金融交易和分析<br>2、此外，如果对于实时计算的功能中，要求可靠的事务机制和可靠性机制，即数据的处理完全精准，一条也不能多，一条也不能少，也可以考虑使用Storm<br>3、如果还需要针对高峰低峰时间段，动态调整实时计算程序的并行度，以最大限度利用集群资源（通常是在小型公司，集群资源紧张的情况），也可以考虑用Storm<br>4、如果一个大数据应用系统，它就是纯粹的实时计算，不需要在中间执行SQL交互式查询、复杂的transformation算子等，那么用Storm是比较好的选择。<br><a id="more"></a></p>
+<h5 id="对于Spark-Streaming来说："><a href="#对于Spark-Streaming来说：" class="headerlink" title="对于Spark Streaming来说："></a>对于Spark Streaming来说：</h5><p>1、如果对上述适用于Storm的三点，一条都不满足的实时场景，即，不要求纯实时，不要求强大可靠的事务机制，不要求动态调整并行度，那么可以考虑使用Spark Streaming<br>2、考虑使用Spark Streaming最主要的一个因素，应该是针对整个项目进行宏观的考虑，即，如果一个项目除了实时计算之外，还包括了离线批处理、交互式查询等业务功能，而且实时计算中，可能还会牵扯到高延迟批处理、交互式查询等功能，那么就应该首选Spark生态，用Spark Core开发离线批处理，用Spark SQL开发交互式查询，用Spark Streaming开发实时计算，三者可以无缝整合，给系统提供非常高的可扩展性</p>
+<h3 id="Spark-Streaming与Storm的优劣分析"><a href="#Spark-Streaming与Storm的优劣分析" class="headerlink" title="Spark Streaming与Storm的优劣分析"></a>Spark Streaming与Storm的优劣分析</h3><p>事实上，Spark Streaming绝对谈不上比Storm优秀。这两个框架在实时计算领域中，都很优秀，只是擅长的细分场景并不相同。<br>Spark Streaming仅仅在吞吐量上比Storm要优秀，而吞吐量这一点，也是历来挺Spark Streaming，贬Storm的人着重强调的。但是问题是，是不是在所有的实时计算场景下，都那么注重吞吐量？不尽然。因此，通过吞吐量说Spark Streaming强于Storm，不靠谱。<br>事实上，Storm在实时延迟度上，比Spark Streaming就好多了，前者是纯实时，后者是准实时。而且，Storm的事务机制、健壮性 / 容错性、动态调整并行度等特性，都要比Spark Streaming更加优秀。<br>Spark Streaming，有一点是Storm绝对比不上的，就是：它位于Spark生态技术栈中，因此Spark Streaming可以和Spark Core、Spark SQL无缝整合，也就意味着，我们可以对实时处理出来的中间数据，立即在程序中无缝进行延迟批处理、交互式查询等操作。这个特点大大增强了Spark Streaming的优势和功能。</p>
+<h3 id="Storm和Spark-streaming对比"><a href="#Storm和Spark-streaming对比" class="headerlink" title="Storm和Spark streaming对比"></a>Storm和Spark streaming对比</h3><table>
+<thead>
+<tr>
+<th>对比点</th>
+<th>storm</th>
+<th>Spark Streaming</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\实时计算模型&emsp;</td>
+<td>\纯实时，来一条数据，处理一条数据</td>
+<td>\准实时，对一个时间段内的数据收集起来，作为一个RDD，再处理</td>
+</tr>
+<tr>
+<td>\实时计算延迟度&emsp;</td>
+<td>\毫秒级</td>
+<td>\秒级  </td>
+</tr>
+<tr>
+<td>\吞吐量&emsp;</td>
+<td>\低</td>
+<td>\高</td>
+</tr>
+<tr>
+<td>\事务机制&emsp;</td>
+<td>\支持完善</td>
+<td>\支持，但不够完善</td>
+</tr>
+<tr>
+<td>\健壮性 / 容错性&emsp;</td>
+<td>\ZooKeeper，Acker，非常强</td>
+<td>\Checkpoint，WAL，一般</td>
+</tr>
+<tr>
+<td>\动态调整并行度&emsp;</td>
+<td>\支持</td>
+<td>\不支持</td>
+</tr>
+</tbody>
+</table>
 
-  <li>
-    <span class="date">
-      2017-03-23
-    </span>
-    <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" class="title">
-      maven多级项目使用slf4j+log4j，以及自定义配置文件路径
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/jvm垃圾收集算法/" class="title">
-      jvm垃圾收集算法
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/java对象的创建过程/" class="title">
-      java对象的创建过程
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-28
-    </span>
-    <a href="/2017/02/28/Storm和Spark-streaming对比/" class="title">
-      Storm和Spark streaming对比
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+        </div>
+      </article>
     </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+           
+              <li class="next">
+              <a href="/2017/03/15/java对象的创建过程/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=theme.youyan_uid"></script>
+		<!-- UY END -->
+	
+</section>
+
+
+    </div>
+   
+　　　　
   </div>
 </div>
 
