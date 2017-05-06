@@ -1,7 +1,0 @@
-http://amazingwu.xyz/
-http://amazingwu.xyz/archives/
-http://amazingwu.xyz/about/
-http://amazingwu.xyz/project/
-http://amazingwu.xyz/photo/
-http://amazingwu.xyz/2017/04/09/maven%E5%A4%9A%E7%BA%A7%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8slf4j+log4j%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84%20-%20%E5%89%AF%E6%9C%AC/
-http://amazingwu.xyz/2017/04/09/maven%E6%89%93%E9%80%A0%E5%8F%AF%E6%89%A7%E8%A1%8Cjar%E5%8C%85/

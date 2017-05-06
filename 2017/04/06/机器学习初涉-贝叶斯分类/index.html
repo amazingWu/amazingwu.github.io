@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="目前就读于北京理工大学软件学院">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="AmazingWu">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="机器学习初涉--贝叶斯分类"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="目前就读于北京理工大学软件学院" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="AmazingWu"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>机器学习初涉--贝叶斯分类 - AmazingWu</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+  <script>AV.initialize("vKLeKzRXEBuUzhmWMw2T1uee-gzGzoHsz", "Jg5qaNmuHFK0hn5xQ4YfpBc6");</script>
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/header.png" alt="AmazingWu" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>AmazingWu</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于我
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                感兴趣的项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="http://amazingwu.ittun.com/">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            机器学习初涉--贝叶斯分类
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-04-06
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <h2 id="贝叶斯定理"><a href="#贝叶斯定理" class="headerlink" title="贝叶斯定理"></a>贝叶斯定理</h2><p> &emsp;&emsp;这个定理解决了现实生活里经常遇到的问题：已知某条件概率，如何得到两个事件交换后的概率，也就是在已知P(A|B)的情况下如何求得P(B|A)。这里先解释什么是条件概率：<br> &emsp;&emsp;P(A|B) 表示事件B已经发生的前提下，事件A发生的概率，叫做事件B发生下事件A的条件概率。 <a id="more"></a>其基本求解公式为：<img src="http://img.blog.csdn.net/20170506110018394" alt="image"><br> &emsp;&emsp;贝叶斯定理之所以有用，是因为我们在生活中经常遇到这种情况：我们可以很容易直接得出P(A|B)，P(B|A)则很难直接得出，但我们更关心P(B|A)，贝叶斯定理就为我们打通从P(A|B)获得P(B|A)的道路。<br> &emsp;&emsp;下面不加证明地直接给出贝叶斯定理：<br> &emsp;&emsp;<img src="http://img.blog.csdn.net/20170506110255926" alt="image"></p>
+<h2 id="朴素贝叶斯分类"><a href="#朴素贝叶斯分类" class="headerlink" title="朴素贝叶斯分类"></a>朴素贝叶斯分类</h2><h3 id="朴素贝叶斯分类的原理与流程"><a href="#朴素贝叶斯分类的原理与流程" class="headerlink" title="朴素贝叶斯分类的原理与流程"></a>朴素贝叶斯分类的原理与流程</h3><p> &emsp;&emsp;朴素贝叶斯分类是一种十分简单的分类算法，叫它朴素贝叶斯分类是因为这种方法的思想真的很朴素，朴素贝叶斯的思想基础是这样的：对于给出的待分类项，求解在此项出现的条件下各个类别出现的概率，哪个最大，就认为此待分类项属于哪个类别。通俗来说，就好比这么个道理，你在街上看到一个黑人，我问你你猜这哥们哪里来的，你十有八九猜非洲。为什么呢？因为黑人中非洲人的比率最高，当然人家也可能是美洲人或亚洲人，但在没有其它可用信息下，我们会选择条件概率最大的类别，这就是朴素贝叶斯的思想基础。<br> &emsp;&emsp;朴素贝叶斯分类的正式定义如下：<br>1、设<img src="http://latex.codecogs.com/gif.latex?x=\{a_1,a_2,...,a_m\}" alt="image"> 为一个待分类项，而每个a为x的一个特征属性。<br>2、有类别集合<img src="http://latex.codecogs.com/gif.latex?C=\{y_1,y_2,...,y_n\}" alt="image"><br>3、计算<img src="http://img.blog.csdn.net/20170506110424068" alt="image"><br>4、如果<img src="http://img.blog.csdn.net/20170506110503031" alt="image">，则<img src="http://img.blog.csdn.net/20170506110542350" alt="image">。   </p>
+<p> &emsp;&emsp;那么现在的关键就是如何计算第3步中的各个条件概率。我们可以这么做：<br>1、找到一个已知分类的待分类项集合，这个集合叫做训练样本集。<br>2、统计得到在各类别下各个特征属性的条件概率估计。即<br><img src="http://img.blog.csdn.net/20170506110649221" alt="image"><br>3、如果各个特征属性是条件独立的，则根据贝叶斯定理有如下推导：<br><img src="http://img.blog.csdn.net/20170506110655596" alt="image"><br>因为分母对于所有类别为常数，因为我们只要将分子最大化皆可。又因为各特征属性是条件独立的，所以有：<br><img src="http://img.blog.csdn.net/20170506110659737" alt="image"><br>根据上述分析，朴素贝叶斯分类的流程可以由下图表示（暂时不考虑验证）：<br><img src="http://images.cnblogs.com/cnblogs_com/leoo2sk/WindowsLiveWriter/4f6168bb064a_9C14/1_2.png" alt="image">   </p>
+<p> 可以看到，整个朴素贝叶斯分类分为三个阶段：<br> &emsp;&emsp;第一阶段——准备工作阶段，这个阶段的任务是为朴素贝叶斯分类做必要的准备，主要工作是根据具体情况确定特征属性，并对每个特征属性进行适当划分，然后由人工对一部分待分类项进行分类，形成训练样本集合。这一阶段的输入是所有待分类数据，输出是特征属性和训练样本。这一阶段是整个朴素贝叶斯分类中唯一需要人工完成的阶段，其质量对整个过程将有重要影响，分类器的质量很大程度上由特征属性、特征属性划分及训练样本质量决定。<br> &emsp;&emsp;第二阶段——分类器训练阶段，这个阶段的任务就是生成分类器，主要工作是计算每个类别在训练样本中的出现频率及每个特征属性划分对每个类别的条件概率估计，并将结果记录。其输入是特征属性和训练样本，输出是分类器。这一阶段是机械性阶段，根据前面讨论的公式可以由程序自动计算完成。<br> &emsp;&emsp;第三阶段——应用阶段。这个阶段的任务是使用分类器对待分类项进行分类，其输入是分类器和待分类项，输出是待分类项与类别的映射关系。这一阶段也是机械性阶段，由程序完成。</p>
+<h3 id="估计类别下特征属性划分的条件概率及Laplace校准"><a href="#估计类别下特征属性划分的条件概率及Laplace校准" class="headerlink" title="估计类别下特征属性划分的条件概率及Laplace校准"></a>估计类别下特征属性划分的条件概率及Laplace校准</h3><p> &emsp;&emsp;这一节讨论P(a|y)的估计。<br> &emsp;&emsp;由上文看出，计算各个划分的条件概率P(a|y)是朴素贝叶斯分类的关键性步骤，当特征属性为离散值时，只要很方便的统计训练样本中各个划分在每个类别中出现的频率即可用来估计P(a|y)，下面重点讨论特征属性是连续值的情况。<br> &emsp;&emsp;当特征属性为连续值时，通常假定其值服从高斯分布（也称正态分布）。即：<br><img src="http://img.blog.csdn.net/20170506110856521" alt="image"><br> &emsp;&emsp;而<img src="http://img.blog.csdn.net/20170506111005633" alt="image"></p>
+<p> &emsp;&emsp;因此只要计算出训练样本中各个类别中此特征项划分的各均值和标准差，代入上述公式即可得到需要的估计值。均值与标准差的计算在此不再赘述。</p>
+<p> &emsp;&emsp;另一个需要讨论的问题就是当P(a|y)=0怎么办，当某个类别下某个特征项划分没有出现时，就是产生这种现象，这会令分类器质量大大降低。为了解决这个问题，我们引入Laplace校准，它的思想非常简单，就是对没类别下所有划分的计数加1，这样如果训练样本集数量充分大时，并不会对结果产生影响，并且解决了上述频率为0的尴尬局面。</p>
+<h3 id="朴素贝叶斯分类器的应用"><a href="#朴素贝叶斯分类器的应用" class="headerlink" title="朴素贝叶斯分类器的应用"></a>朴素贝叶斯分类器的应用</h3><p>一、病人分类的例子<br> &emsp;&emsp;某个医院早上收了六个门诊病人，如下表。   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">症状　　职业　　　疾病</div><div class="line">打喷嚏　护士　　　感冒 </div><div class="line">打喷嚏　农夫　　　过敏 </div><div class="line">头痛　　建筑工人　脑震荡 </div><div class="line">头痛　　建筑工人　感冒 </div><div class="line">打喷嚏　教师　　　感冒 </div><div class="line">头痛　　教师　　　脑震荡</div></pre></td></tr></table></figure>
+<p> &emsp;&emsp;现在又来了第七个病人，是一个打喷嚏的建筑工人。请问他患上感冒的概率有多大？<br>根据贝叶斯定理：  </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P(<span class="name">A</span><span class="name">|B) = P(B|</span><span class="name">A</span>) P(<span class="name">A</span>) / P(<span class="name">B</span>)</div></pre></td></tr></table></figure>
+<p> &emsp;&emsp;可得  </p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">P<span class="comment">(感冒|打喷嚏x建筑工人)</span>   </div><div class="line">　　= P<span class="comment">(打喷嚏x建筑工人|感冒)</span> x P<span class="comment">(感冒)</span>   </div><div class="line">　　/ P<span class="comment">(打喷嚏x建筑工人)</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;假定”打喷嚏”和”建筑工人”这两个特征是独立的，因此，上面的等式就变成了  </p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">P<span class="comment">(感冒|打喷嚏x建筑工人)</span>   </div><div class="line">　　= P<span class="comment">(打喷嚏|感冒)</span> x P<span class="comment">(建筑工人|感冒)</span> x P<span class="comment">(感冒)</span>   </div><div class="line">　  / P<span class="comment">(打喷嚏)</span> x P<span class="comment">(建筑工人)</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这是可以计算的。  </p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">P(感冒|打喷嚏x建筑工人)   </div><div class="line">　　= <span class="number">0.66</span> x <span class="number">0.33</span> x <span class="number">0.5</span> / <span class="number">0.5</span> x <span class="number">0.33</span>   </div><div class="line">　　= <span class="number">0.66</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;因此，这个打喷嚏的建筑工人，有66%的概率是得了感冒。同理，可以计算这个病人患上过敏或脑震荡的概率。比较这几个概率，就可以知道他最可能得什么病。<br>这就是贝叶斯分类器的基本方法：在统计资料的基础上，依据某些特征，计算各个类别的概率，从而实现分类。</p>
+<p>二、账号分类的例子<br>&emsp;&emsp;根据某社区网站的抽样统计，该站10000个账号中有89%为真实账号（设为C0），11%为虚假账号（设为C1）。<br>　　<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attr">C0</span> = <span class="number">0.89</span>  </div><div class="line"><span class="attr">C1</span> = <span class="number">0.11</span></div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;接下来，就要用统计资料判断一个账号的真实性。假定某一个账号有以下三个特征：<br>　　　　<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">F1:</span> 日志数量/注册天数   </div><div class="line"><span class="symbol">F2:</span> 好友数量/注册天数   </div><div class="line"><span class="symbol">F3:</span> 是否使用真实头像（真实头像为<span class="number">1</span>，非真实头像为<span class="number">0</span>）  </div><div class="line">F1 = <span class="number">0.1</span>   </div><div class="line">F2 = <span class="number">0.2</span>   </div><div class="line">F3 = <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;请问该账号是真实账号还是虚假账号？<br>&emsp;&emsp;方法是使用朴素贝叶斯分类器，计算下面这个计算式的值。<br>　　　　<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">P</span><span class="params">(F1|C)</span><span class="title">P</span><span class="params">(F2|C)</span><span class="title">P</span><span class="params">(F3|C)</span><span class="title">P</span><span class="params">(C)</span></span></div></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;虽然上面这些值可以从统计资料得到，但是这里有一个问题：F1和F2是连续变量，不适宜按照某个特定值计算概率。<br>&emsp;&emsp;一个技巧是将连续值变为离散值，计算区间的概率。比如将F1分解成[0, 0.05]、(0.05, 0.2)、[0.2, +∞]三个区间，然后计算每个区间的概率。在我们这个例子中，F1等于0.1，落在第二个区间，所以计算的时候，就使用第二个区间的发生概率。<br>&emsp;&emsp;根据统计资料，可得：  </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">P(<span class="name">F1</span><span class="name">|C0) = 0.5, P(F1|</span><span class="name">C1</span>) = <span class="number">0.1</span>   </div><div class="line">P(<span class="name">F2</span><span class="name">|C0) = 0.7, P(F2|</span><span class="name">C1</span>) = <span class="number">0.2</span>   </div><div class="line">P(<span class="name">F3</span><span class="name">|C0) = 0.2, P(F3|</span><span class="name">C1</span>) = <span class="number">0.9</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;因此，  </p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">P(<span class="name">F1</span><span class="name">|C0) P(F2|</span><span class="name">C0</span>) P(<span class="name">F3</span><span class="name">|C0) P(C0)   </span></div><div class="line">　　= 0.5 x 0.7 x 0.2 x 0.89   </div><div class="line">　　= 0.0623  </div><div class="line">P(F1|<span class="name">C1</span>) P(<span class="name">F2</span><span class="name">|C1) P(F3|</span><span class="name">C1</span>) P(<span class="name">C1</span>)   </div><div class="line">　　= <span class="number">0.1</span> x <span class="number">0.2</span> x <span class="number">0.9</span> x <span class="number">0.11</span>   </div><div class="line">　　= <span class="number">0.00198</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以看到，虽然这个用户没有使用真实头像，但是他是真实账号的概率，比虚假账号高出30多倍，因此判断这个账号为真。<br>三、性别分类的例子<br>&emsp;&emsp;下面是一组人类身体特征的统计资料。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">性别　　身高（英尺）　体重（磅）　　脚掌（英寸）</div><div class="line">男 　　　<span class="number">6</span> 　　　　　　<span class="number">180</span>　　　　　<span class="number">12</span> </div><div class="line">男 　　　<span class="number">5.92</span>　　　　　<span class="number">190</span>　　　　　<span class="number">11</span> </div><div class="line">男 　　　<span class="number">5.58</span>　　　　　<span class="number">170</span>　　　　　<span class="number">12</span> </div><div class="line">男 　　　<span class="number">5.92</span>　　　　　<span class="number">165</span>　　　　　<span class="number">10</span> </div><div class="line">女 　　　<span class="number">5</span> 　　　　　　<span class="number">100</span>　　　　　<span class="number">6</span> </div><div class="line">女 　　　<span class="number">5.5</span> 　　　　　<span class="number">150</span>　　　　　<span class="number">8</span> </div><div class="line">女 　　　<span class="number">5.42</span>　　　　　<span class="number">130</span>　　　　　<span class="number">7</span> </div><div class="line">女 　　　<span class="number">5.75</span>　　　　　<span class="number">150</span>　　　　　<span class="number">9</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;已知某人身高6英尺、体重130磅，脚掌8英寸，请问该人是男是女？<br>&emsp;&emsp;根据朴素贝叶斯分类器，计算下面这个式子的值。  </p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">P<span class="comment">(身高|性别)</span> x P<span class="comment">(体重|性别)</span> x P<span class="comment">(脚掌|性别)</span> x P<span class="comment">(性别)</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;这里的困难在于，由于身高、体重、脚掌都是连续变量，不能采用离散变量的方法计算概率。而且由于样本太少，所以也无法分成区间计算。怎么办？<br>&emsp;&emsp;这时，可以假设男性和女性的身高、体重、脚掌都是正态分布，通过样本计算出均值和方差，也就是得到正态分布的密度函数。有了密度函数，就可以把值代入，算出某一点的密度函数的值。<br>&emsp;&emsp;比如，男性的身高是均值5.855、方差0.035的正态分布。所以，男性的身高为6英尺的概率的相对值等于1.5789（大于1并没有关系，因为这里是密度函数的值，只用来反映各个值的相对可能性）。  </p>
+<p>&emsp;&emsp;有了这些数据以后，就可以计算性别的分类了。  </p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">P(身高=<span class="number">6</span>|男) x P(体重=<span class="number">130</span>|男) x P(脚掌=<span class="number">8</span>|男) x P(男) </div><div class="line">　　= <span class="number">6.1984</span> x e<span class="number">-9</span></div><div class="line">P(身高=<span class="number">6</span>|女) x P(体重=<span class="number">130</span>|女) x P(脚掌=<span class="number">8</span>|女) x P(女) </div><div class="line">　　= <span class="number">5.3778</span> x e<span class="number">-4</span></div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;可以看到，女性的概率比男性要高出将近10000倍，所以判断该人为女性。</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" rel="prev">下一篇</a>
+             </li>
+           
+           
+              <li class="next">
+              <a href="/2017/04/07/maven打造可执行jar包/" rel="prev">上一篇</a>
+            </li>
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">留言</h1> -->
+
+  
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=theme.youyan_uid"></script>
+		<!-- UY END -->
+	
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>AmazingWu &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>AmazingWu的技术部落</span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+<!--page counter part-->
+<script>
+function addCount (Counter) {
+        url=$('.article-date').attr('href').trim();
+        title = $('.article-title').text().trim();
+        var query=new AV.Query(Counter);
+        //use url as unique idnetfication
+        query.equalTo("url",url);
+        query.find({
+            success: function(results){
+                if(results.length>0)
+                {
+                    var counter=results[0];
+                    counter.fetchWhenSave(true); //get recent result
+                    counter.increment("time");
+                    counter.save();
+                }
+                else
+                {
+                    var newcounter=new Counter();
+                    newcounter.set("title",title);
+                    newcounter.set("url",url);
+                    newcounter.set("time",1);
+                    newcounter.save(null,{
+                        success: function(newcounter){
+                        //alert('New object created');
+                        },
+                        error: function(newcounter,error){
+                        alert('Failed to create');
+                        }
+                        });
+                }
+            },
+            error: function(error){
+                //find null is not a error
+                alert('Error:'+error.code+" "+error.message);
+            }
+        });
+}
+$(function(){
+        var Counter=AV.Object.extend("Counter");
+        //only increse visit counting when intering a page
+		alert("hello");
+        if ($('.article-title').length == 1)
+           addCount(Counter);
+        var query=new AV.Query(Counter);
+        query.descending("time");
+        // the sum of popular posts
+        query.limit(10); 
+        query.find({
+            success: function(results){
+                    for(var i=0;i<results.length;i++)    
+                    {
+                        var counter=results[i];
+                        title=counter.get("title");
+                        url=counter.get("url");
+                        time=counter.get("time");
+                        // add to the popularlist widget
+                        showcontent=title+" ("+time+")";
+                        //notice the "" in href
+                        $('.popularlist').append('<li><a href="'+url+'">'+showcontent+'</a></li>');
+                    }
+                },
+            error: function(error){
+                alert("Error:"+error.code+" "+error.message);
+            }
+            }
+        )
+        });
+</script>
+
+</body>
+
+</html>

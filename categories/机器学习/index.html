@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="jvm垃圾收集算法"/>
+      <meta property="og:title" content="AmazingWu"/>
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
   <meta property="og:site_name" content="AmazingWu"/>
   <!--Type page-->
   
-      <meta property="og:type" content="article" />
+      <meta property="og:type" content="website" />
   
   <!--Page Cover-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>jvm垃圾收集算法 - AmazingWu</title>
+  <title>机器学习 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -154,72 +154,92 @@
 
 
   <!-- Main Content -->
-  <div class="content-area">
-  <div class="post">
-    <!-- Post Content -->
-    <div class="container">
-      <article>
-        <!-- Title date & tags -->
-        <div class="post-header">
-          <h1 class="entry-title">
-            jvm垃圾收集算法
-            
-          </h1>
-         
-        </div>
-         <p class="a-posted-on">
-          2017-03-15
-          </p>
-		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-        <!-- Post Main Content -->
-        <div class="entry-content">
-          <blockquote>
-<p>来源：JVM虚拟机</p>
-</blockquote>
-<h1 id="标记-清除法"><a href="#标记-清除法" class="headerlink" title="标记-清除法"></a>标记-清除法</h1><p>最基础的收集算法是“标记-清除”（Mark-Sweep）算法，如同它的名字一样，算法分<br>为“标记”和“清除”两个阶段：首先标记出所有需要回收的对象，在标记完成后统一回收所有<br>被标记的对象，它的标记过程其实在前一节讲述对象标记判定时已经介绍过了。 之所以说它<br>是最基础的收集算法，是因为后续的收集算法都是基于这种思路并对其不足进行改进而得到<br>的。 它的主要不足有两个：==一个是效率问题，标记和清除两个过程的效率都不高；另一个是<br>空间问题，标记清除之后会产生大量不连续的内存碎片==，空间碎片太多可能会导致以后在程<br>序运行过程中需要分配较大对象时，无法找到足够的连续内存而不得不提前触发另一次垃圾<br>收集动作。<br><a id="more"></a></p>
-<h1 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h1><p>为了解决效率问题，一种称为“复制”（Copying）的收集算法出现了，它将可用==内存按容<br>量划分为大小相等的两块，每次只使用其中的一块==。 ==当这一块的内存用完了，就将还存活着<br>的对象复制到另外一块上面，然后再把已使用过的内存空间一次清理掉==。 这样使得每次都是<br>对整个半区进行内存回收，内存分配时也就不用考虑内存碎片等复杂情况，只要移动堆顶指<br>针，按顺序分配内存即可，实现简单，运行高效。 只是这种算法的代价是将内存缩小为了原<br>来的一半，未免太高了一点。 复制算法的执行过程如图3-3所示。</p>
-<p>现在的商业虚拟机都采用这种收集算法来回收新生代，IBM公司的专门研究表明，新生<br>代中的对象98%是“朝生夕死”的。所以并不需要按照1:1的比例来划分内存空间，==而是将内存<br>分为一块较大的Eden空间和两块较小的Survivor空间==，每次使用Eden和其中一块Survivor[1]。<br>当回收时，将Eden和Survivor中还存活着的对象一次性地复制到另外一块Survivor空间上，最<br>后清理掉Eden和刚才用过的Survivor空间。 HotSpot虚拟机默认Eden和Survivor的大小比例是<br>8:1，也就是每次新生代中可用内存空间为整个新生代容量的90%（80%+10%），只有10%<br>的内存会被“浪费”。 当然，98%的对象可回收只是一般场景下的数据，我们没有办法保证每<br>次回收都只有不多于10%的对象存活，当Survivor空间不够用时，需要依赖其他内存（这里<br>指老年代）进行分配担保（Handle Promotion）。</p>
-<h1 id="标记整理算法"><a href="#标记整理算法" class="headerlink" title="标记整理算法"></a>标记整理算法</h1><p>复制收集算法在对象存活率较高时就要进行较多的复制操作，效率将会变低。 更关键的<br>是，如果不想浪费50%的空间，就需要有额外的空间进行分配担保，以应对被使用的内存中<br>所有对象都100%存活的极端情况，所以在老年代一般不能直接选用这种算法。<br>根据老年代的特点，有人提出了另外一种“标记-整理”（Mark-Compact）算法，标记过程<br>仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存<br>活的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
-<h1 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h1><p>当前商业虚拟机的垃圾收集都采用“分代收集”（Generational Collection）算法，这种算<br>法并没有什么新的思想，==只是根据对象存活周期的不同将内存划分为几块==。 一般是把Java堆<br>分为新生代和老年代，这样就可以==根据各个年代的特点采用最适当的收集算法==。 在新生代<br>中，每次垃圾收集时都发现有大批对象死去，只有少量存活，那就选用复制算法，只需要付<br>出少量存活对象的复制成本就可以完成收集。 而老年代中因为对象存活率高、 没有额外空间<br>对它进行分配担保，就必须使用“标记—清理”或者“标记—整理”算法来进行回收。</p>
-
-        </div>
-      </article>
-    </div>
-    <!-- Pre or Next -->
-    
-	<div class="container" >
-		
-           <ul class="pager">
-    	     
-      	     <li class="previous">
-              <a href="/2017/03/15/java对象的创建过程/" rel="prev">下一篇</a>
-             </li>
-           
-           
-              <li class="next">
-              <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" rel="prev">上一篇</a>
-            </li>
-           
-          </ul>
-       </div>
-　　　　<!-- Comments -->
-    <div class="container">
-      
-<section id="comment">
-  <!-- <h1 class="title">留言</h1> -->
-
   
-		<!-- UY BEGIN -->
-		<div id="uyan_frame"></div>
-		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=theme.youyan_uid"></script>
-		<!-- UY END -->
-	
-</section>
+
+<!-- Main Content -->
+<div class="archive content-area">
+  <div class="container">
+    <h1 class="entry-title">机器学习</h1>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
+          1. group site.posts by year
+          2. sort posts-in-one-year by Month and Day
+        -->
+        
+
+        
+          <h2 class="year">2017</h2>
+          <ul class="list">
+            
+  <li>
+    <span class="date">
+      2017-04-17
+    </span>
+    <a href="/2017/04/17/动态规划-DAG-硬币问题/" class="title">
+      动态规划-DAG-硬币问题
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-04-07
+    </span>
+    <a href="/2017/04/07/maven打造可执行jar包/" class="title">
+      maven打造可执行war包
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-04-06
+    </span>
+    <a href="/2017/04/06/机器学习初涉-贝叶斯分类/" class="title">
+      机器学习初涉--贝叶斯分类
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-03-23
+    </span>
+    <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" class="title">
+      maven多级项目使用slf4j+log4j，以及自定义配置文件路径
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-03-15
+    </span>
+    <a href="/2017/03/15/java对象的创建过程/" class="title">
+      java对象的创建过程
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-03-15
+    </span>
+    <a href="/2017/03/15/jvm垃圾收集算法/" class="title">
+      jvm垃圾收集算法
+    </a>
+  </li>
+
+  <li>
+    <span class="date">
+      2017-02-28
+    </span>
+    <a href="/2017/02/28/Storm和Spark-streaming对比/" class="title">
+      Storm和Spark streaming对比
+    </a>
+  </li>
 
 
+          </ul>
+        
+      </div>
     </div>
-   
-　　　　
   </div>
 </div>
 
