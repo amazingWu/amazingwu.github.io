@@ -881,11 +881,11 @@ Content
   /* line 541, themes/hexo-theme-believe/source/css/_believe.scss */
   .pager .previous {
     float: right;
-    margin-right: 20%; }
+    margin-right: 3%; }
   /* line 545, themes/hexo-theme-believe/source/css/_believe.scss */
   .pager .next {
     float: left;
-    margin-left: 20%; }
+    margin-left: 3%; }
   /* line 549, themes/hexo-theme-believe/source/css/_believe.scss */
   .pager a {
     text-decoration: none;
