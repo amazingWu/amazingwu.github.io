@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="AmazingWu"/>
+      <meta property="og:title" content="机器学习初涉--k近邻算法"/>
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
   <meta property="og:site_name" content="AmazingWu"/>
   <!--Type page-->
   
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
   
   <!--Page Cover-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>动态规划 - AmazingWu</title>
+  <title>机器学习初涉--k近邻算法 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -154,110 +154,66 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">动态规划</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2017</h2>
-          <ul class="list">
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            机器学习初涉--k近邻算法
             
-  <li>
-    <span class="date">
-      2017-05-10
-    </span>
-    <a href="/2017/05/10/机器学习出涉-k近邻算法/" class="title">
-      机器学习初涉--k近邻算法
-    </a>
-  </li>
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-05-10
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <hr>
+<p>在此对k近邻算法做一个简单的总结：</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>K-近邻方法通过计算每个训练样例到待分类样品的距离，取和待分类样品距离最近的k个训练样例，k个样品中哪个类别的训练样例占多数，则待分类原组就属于哪个类别。<br>在实践中往往通过若干次实验来确定K值，取分类误差率最小的K值。<br><a id="more"></a></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>KNN方法主要依靠周围有限的邻近的样本，而不是靠判别类域的方法来确定所属类别，因此对于类域的交叉或者重叠较多的待分类样本集来说，KNN方法更为合适。<br>不足之处是计算量较大，因为对每一个待分类的样本都要计算它到全体已知样本的距离，才能求得它的K个最邻近点。  </p>
+<p>改进:<br>对于计算量大的问题目前常用的解决办法是事先对已知样本点进行剪辑，实现去除对分类作用不大的样本。<br>对样本进行组织与整理，分群分层，尽可能地将计算压缩在接近测试样本领域的小范围内。  </p>
+<p>总的来说，算法的适应性较强，尤其适用于样本容量较大的自动分类问题，而那些样本容量较小的分类问题采用这种算法比较容易产生误分。</p>
 
-  <li>
-    <span class="date">
-      2017-05-08
-    </span>
-    <a href="/2017/05/08/机器学习初涉—-决策树分类/" class="title">
-      机器学习初涉—-决策树分类
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-17
-    </span>
-    <a href="/2017/04/17/动态规划-DAG-硬币问题/" class="title">
-      动态规划-DAG-硬币问题
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-07
-    </span>
-    <a href="/2017/04/07/maven打造可执行jar包/" class="title">
-      maven打造可执行war包
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-06
-    </span>
-    <a href="/2017/04/06/机器学习初涉-贝叶斯分类/" class="title">
-      机器学习初涉--贝叶斯分类
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-23
-    </span>
-    <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" class="title">
-      maven多级项目使用slf4j+log4j，以及自定义配置文件路径
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/jvm垃圾收集算法/" class="title">
-      jvm垃圾收集算法
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/java对象的创建过程/" class="title">
-      java对象的创建过程
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-28
-    </span>
-    <a href="/2017/02/28/Storm和Spark-streaming对比/" class="title">
-      Storm和Spark streaming对比
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+        </div>
+      </article>
     </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/05/08/机器学习初涉—-决策树分类/" rel="prev">下一篇：机器学习初涉—-决策树分类</a>
+             </li>
+           
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130436"></script>
+		<!-- UY END -->
+	
+</section>
+
+
+    </div>
+   
+　　　　
   </div>
 </div>
 
