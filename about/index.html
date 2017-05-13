@@ -182,12 +182,33 @@
 <h2 id="性格："><a href="#性格：" class="headerlink" title="性格："></a>性格：</h2><p>&emsp;&emsp;简单，随性，放纵不羁，爱自由</p>
 <h2 id="个人信息：-1"><a href="#个人信息：-1" class="headerlink" title="个人信息："></a>个人信息：</h2><p>&emsp;&emsp;<a href="https://github.com/amazingWu" target="_blank" rel="external">个人github地址</a>：<a href="https://github.com/amazingWu" target="_blank" rel="external">https://github.com/amazingWu</a><br>&emsp;&emsp;<a href="http://blog.csdn.net/u013668852" target="_blank" rel="external">个人CSDN博客</a>：<a href="http://blog.csdn.net/u013668852" target="_blank" rel="external">http://blog.csdn.net/u013668852</a><br>&emsp;&emsp;个人邮箱：amazingjadewu@gmail.com<br>&emsp;&emsp;欢迎添加我的微信： wq951654775<br><img src="/images/wq951654775.jpg" width="200em">   </p>
 <h2 id="友情链接："><a href="#友情链接：" class="headerlink" title="友情链接："></a>友情链接：</h2><p>&emsp;&emsp;<a href="http://haroldliu.weebly.com/" target="_blank" rel="external">HaroldLiuChi</a>:北京理工大学软件学院副院长刘驰老师<br>&emsp;&emsp;<a href="http://guangyugao.weebly.com/" target="_blank" rel="external">Guangyu(Ryan) Gao</a>:北京理工大学软件学院高老师<br>&emsp;&emsp;<a href="http://fangheart.top" target="_blank" rel="external">FangHeart的博客</a>:实验室小伙伴FangHeart<br>&emsp;&emsp;<a href="http://wenjiewang.top/" target="_blank" rel="external">wenjiewang的博客</a>：实验室小伙伴wenjiewang<br>&emsp;&emsp;<a href="http://blog.csdn.net/it_dx" target="_blank" rel="external">DuanXiong的博客</a>：实验室小伙伴DuanXiong</p>
-<p><script type="text/javascript"><br>var duoshuoQuery = {short_name:”&lt;%= theme.duoshuo_shortname %&gt;”};<br>    (function() {<br>        var ds = document.createElement(‘script’);<br>        ds.type = ‘text/javascript’;ds.async = true;<br>        ds.src = (document.location.protocol == ‘https:’ ? ‘https:’ : ‘http:’) + ‘//static.duoshuo.com/embed.js’;<br>        ds.charset = ‘UTF-8’;<br>        (document.getElementsByTagName(‘head’)[0]<br>         || document.getElementsByTagName(‘body’)[0]).appendChild(ds);<br>    })();<br>    </script></p>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"<%= theme.duoshuo_shortname %>"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
 <div class="ds-recent-visitors" data-num-items="38" data-avatar-size="42" id="ds-recent-visitors"></div>
 
-<p><div class="ds-thread" data-thread-key="<%= page.layout %>-<%= page.slug %>" data-title="<%= page.title %>" data-url="<%= page.permalink %>"></div><br><!-- UY BEGIN --></p>
-<p><div id="uyan_newcmt_unit"></div></p>
-<p><script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=<%=theme.youyan_uid%>"></script><br><!-- UY END --></p>
+<div class="ds-thread" data-thread-key="<%= page.layout %>-<%= page.slug %>" data-title="<%= page.title %>" data-url="<%= page.permalink %>"></div>
+<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+var cloudTieConfig = {
+  url: document.location.href, 
+  sourceId: "",
+  productKey: "4012445f10d64eeda48ae75a222ef4f4",
+  target: "cloud-tie-wrapper"
+};
+var yunManualLoad = true;
+Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+</script>
+
 <p><br></p>
 
         </div>
@@ -219,7 +240,7 @@
 
 
 <!--page counter part-->
-<script>
+<!--<script>
 function addCount (Counter) {
         url=$('.article-date').attr('href').trim();
         title = $('.article-title').text().trim();
@@ -286,7 +307,7 @@ $(function(){
             }
             }
         )
-        });
+        });-->
 </script>
 
 </body>
