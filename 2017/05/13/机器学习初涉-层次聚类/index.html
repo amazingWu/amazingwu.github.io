@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="AmazingWu"/>
+      <meta property="og:title" content="机器学习初涉--层次聚类"/>
   
   <!--Open Graph Description-->
   
@@ -42,7 +42,7 @@
   <meta property="og:site_name" content="AmazingWu"/>
   <!--Type page-->
   
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
   
   <!--Page Cover-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>maven - AmazingWu</title>
+  <title>机器学习初涉--层次聚类 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -154,119 +154,69 @@
 
 
   <!-- Main Content -->
-  
-
-<!-- Main Content -->
-<div class="archive content-area">
-  <div class="container">
-    <h1 class="entry-title">maven</h1>
-    <div class="row">
-      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <!-- Use lodash to classify posts. See https://lodash.com/docs#groupBy
-          1. group site.posts by year
-          2. sort posts-in-one-year by Month and Day
-        -->
-        
-
-        
-          <h2 class="year">2017</h2>
-          <ul class="list">
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            机器学习初涉--层次聚类
             
-  <li>
-    <span class="date">
-      2017-05-13
-    </span>
-    <a href="/2017/05/13/机器学习初涉-层次聚类/" class="title">
-      机器学习初涉--层次聚类
-    </a>
-  </li>
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-05-13
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>&emsp;&emsp;层次聚类算法，是通过将数据组织为若干组并形成一个相应的树来进行聚类的。 层次聚类可以自底向上也可以自顶向下，自顶向下的叫分裂的聚类算法，自底向上的叫凝聚的聚类算法。<br>&emsp;&emsp;一个简单的凝聚的层次聚类过程如图所示，一个完全层次聚类的质量由于无法对已经做的合并或分解进行调整而受到影响（简单的说就是一个点被划分到一个簇，或者两个簇合并后，后续无法进行改变，将会一直影响到聚类结束）。但是层次聚类算法没有使用准则函数，它所含的对数据结构的假设更少，所以它的通用性更强。<br><a id="more"></a><br><img src="http://img.blog.csdn.net/20160304204435219" alt="image"><br>&emsp;&emsp;凝聚的层次聚类：自底向上的策略，首先将每个对象作为一个簇，然后合并这些原子簇为越来越大的簇，直到所有的对象都在一个簇中或者达到某个终结条件。<br>&emsp;&emsp;分裂的层次聚类：顶向下的策略，首先将所有的簇都放在一个簇中，然后慢慢地细分为越来越小的簇，直到每个对象自成一簇或者达到其他的一个终结条件，例如满足了某个期望的簇数目，又或者两个最近的簇之间的距离达到了某一个阈值。<br>说明：在凝聚的层次聚类中，两个簇之间的相似度是由这里的两个不同簇中的距离最近的数据点的数据点对的相似度来定义的。在分裂的层次聚类中，簇根据某个准则进行分裂，例如这个簇中的A和B之间的距离是这个簇中所有样本间距离最远的一对，分类时以样本A和B作为新的簇，其他的样本根据距离A和B的远近划分到对应的簇中。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>用户需要提供所希望得到的聚类的单个数量和阈值作为结束条件，而这个条件对于复杂数据来说是难以判定的。</li>
+<li>实现原理简单，但是偶尔会遇见合并或分裂点的抉择的困难。</li>
+<li>已形成的处理就不能撤销，两个聚类之间也不能交换对象。</li>
+<li>不具有很好的伸缩性，因为分类或合并时的决策需要经过检测和估算大量的对象和簇。</li>
+<li>层次聚类算法由于使用距离矩阵，时间和空间复杂度都很高O(N^2),几乎不能在大数据集上使用。</li>
+<li>层次聚类算法只处理符合某静态模型的簇忽略了不同簇间的信息而且忽略了粗剪的互联性（粗剪距离较近的数据对的多少）和近似度（簇间对数据对的相似度）。</li>
+</ol>
 
-  <li>
-    <span class="date">
-      2017-05-10
-    </span>
-    <a href="/2017/05/10/机器学习出涉-k近邻算法/" class="title">
-      机器学习初涉--k近邻算法
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-05-08
-    </span>
-    <a href="/2017/05/08/机器学习初涉—-决策树分类/" class="title">
-      机器学习初涉—-决策树分类
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-17
-    </span>
-    <a href="/2017/04/17/动态规划-DAG-硬币问题/" class="title">
-      动态规划-DAG-硬币问题
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-07
-    </span>
-    <a href="/2017/04/07/maven打造可执行jar包/" class="title">
-      maven打造可执行war包
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-04-06
-    </span>
-    <a href="/2017/04/06/机器学习初涉-贝叶斯分类/" class="title">
-      机器学习初涉--贝叶斯分类
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-23
-    </span>
-    <a href="/2017/03/23/maven多级项目使用slf4j+log4j以及自定义配置文件路径 - 副本/" class="title">
-      maven多级项目使用slf4j+log4j，以及自定义配置文件路径
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/jvm垃圾收集算法/" class="title">
-      jvm垃圾收集算法
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-03-15
-    </span>
-    <a href="/2017/03/15/java对象的创建过程/" class="title">
-      java对象的创建过程
-    </a>
-  </li>
-
-  <li>
-    <span class="date">
-      2017-02-28
-    </span>
-    <a href="/2017/02/28/Storm和Spark-streaming对比/" class="title">
-      Storm和Spark streaming对比
-    </a>
-  </li>
-
-
-          </ul>
-        
-      </div>
+        </div>
+      </article>
     </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/05/10/机器学习出涉-k近邻算法/" rel="prev">下一篇：机器学习初涉--k近邻算法</a>
+             </li>
+           
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<!-- UY BEGIN -->
+		<div id="uyan_frame"></div>
+		<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2130436"></script>
+		<!-- UY END -->
+	
+</section>
+
+
+    </div>
+   
+　　　　
   </div>
 </div>
 
