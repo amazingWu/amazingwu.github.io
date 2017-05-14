@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="目前就读于北京理工大学软件学院">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="AmazingWu">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="关联规则-Apriori算法"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="目前就读于北京理工大学软件学院" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="AmazingWu"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>关联规则-Apriori算法 - AmazingWu</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+  <script>AV.initialize("vKLeKzRXEBuUzhmWMw2T1uee-gzGzoHsz", "Jg5qaNmuHFK0hn5xQ4YfpBc6");</script>
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/header.png" alt="AmazingWu" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>AmazingWu</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于我
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                感兴趣的项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="http://amazingwu.ittun.com/">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            关联规则-Apriori算法
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-05-14
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>关联规则的挖掘分为两步：1，找出所有频繁项集；2，由频繁项集产生强关联规则。总体的性能由第一步决定。<br>Apriori核心算法思想简要描述如下：<br>该算法中有两个关键步骤为连接步和剪枝步。<br><a id="more"></a><br>1）连接步：为找出Lk(频繁k项集)，通过Lk-1与自身连接，产生候选k项集，该候选k项集，该候选集记作Ck；其中Lk-1的元素是可连接的。<br>2）剪枝步：Ck是Lk的超集，即它的成员可以是也可以不是频繁的，但所有的频繁项集都包含在Ck中。扫描数据库，确定Ck中每一个候选的计数，从而确定Lk（计数值步小于最小支持度计数的所有候选是频繁的，从而属于Lk）。然而，Ck可能很大，这样涉及的计算量就很大。为了压缩Ck，使用Apriori性质：任何非频繁的（k-1）项集都不可能是频繁k项集的子集（推论出：频繁k项集的任何非空真子集都必需是频繁的）。因此，如果一个候选K项集（k-1）项集不在Lk中，则该候选项不可能是频繁的，从而可以由Ck中删除（可利用该定论来剪枝：只需检验（k-1）项集是不是频繁的就可以了，因为小于k-1项集已经在得到（k-1）项集时得到了验证）。  </p>
+<p>算法步骤：  </p>
+<ol>
+<li>扫描全部数据，产生候选1-项集的集合C1;  </li>
+<li>根据最小支持度，由候选1-项集的集合C1产生频繁1-项集的集合L1；  </li>
+<li>对k&gt;1，重复执行步骤4、5、6  </li>
+<li>由Lk执行连接（自连接）和剪枝操作，产生候选（k+1）-项集的集合Ck+1；  </li>
+<li>根据最小支持度，由候选（k+1）-项集的集合Ck+1，产生频繁（k+1）-项集的集合Lk+1；  </li>
+<li>若L!=空集，则k=k+1，跳往步骤4；否则跳往步骤7；    </li>
+<li>根据最小置信度，由频繁项集产生强关联规则，结束。  </li>
+</ol>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/05/14/机器学习初涉-高斯混合模型聚类/" rel="prev">下一篇：机器学习初涉-高斯混合模型聚类</a>
+             </li>
+           
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      <div id="hot-news-wrap"></div>
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "4012445f10d64eeda48ae75a222ef4f4";  
+  var yunHotNewsWrap = "hot-news-wrap";   //放置的DOM节点ID 或 样式类
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2hvdF9uZXdzX3NjcmlwdC5odG1s", true);
+</script>
+
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+		<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+		<script>
+		var cloudTieConfig = {
+		  url: document.location.href, 
+		  sourceId: "",
+		  productKey: "4012445f10d64eeda48ae75a222ef4f4",
+		  target: "cloud-tie-wrapper"
+		};
+		var yunManualLoad = true;
+		Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+		</script>
+	
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>AmazingWu &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>AmazingWu的技术部落</span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
