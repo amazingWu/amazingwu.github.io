@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="目前就读于北京理工大学软件学院">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="AmazingWu">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="Hive的UDF、UDAF、UDTF"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="目前就读于北京理工大学软件学院" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="AmazingWu"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>Hive的UDF、UDAF、UDTF - AmazingWu</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+  <script>AV.initialize("vKLeKzRXEBuUzhmWMw2T1uee-gzGzoHsz", "Jg5qaNmuHFK0hn5xQ4YfpBc6");</script>
+  <!--百度站长统计-->
+  <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?b32173acdfb3bd036446baf9f915fba8";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/header.png" alt="AmazingWu" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>AmazingWu</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于我
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                感兴趣的项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="http://amazingwu.ittun.com/">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            Hive的UDF、UDAF、UDTF
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-05-20
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <blockquote>
+<p>本篇文章详细讲解UDF、UDAF、UDTF的使用及注意事项，下章将会讲解在UDF的基础之上使用Hive 2.1中transform接口。</p>
+</blockquote>
+<p>Hive进行UDF开发十分简单，此处所说UDF为Temporary的function，所以需要hive版本在0.4.0以上才可以。  </p>
+<h2 id="一、背景："><a href="#一、背景：" class="headerlink" title="一、背景："></a>一、背景：</h2><p>Hive是基于Hadoop中的MapReduce，提供HQL查询的数据仓库。Hive是一个很开放的系统，很多内容都支持用户定制，包括：<br>a）文件格式：Text File，Sequence File<br>b）内存中的数据格式： Java Integer/String, Hadoop IntWritable/Text<br>c）用户提供的 map/reduce 脚本：不管什么语言，利用 stdin/stdout 传输数据<br>d）用户自定义函数: Substr, Trim, 1 – 1<br>e）用户自定义聚合函数: Sum, Average…… n – 1  </p>
+<h2 id="二、用法"><a href="#二、用法" class="headerlink" title="二、用法"></a>二、用法</h2><h3 id="UDF"><a href="#UDF" class="headerlink" title="UDF"></a>UDF</h3><p>定义：UDF(User-Defined-Function)，用户自定义函数对数据进行处理。<br>UDF函数可以直接应用于select语句，对查询结构做格式化处理后，再输出内容。<br> Hive的UDF根据继承的父类可以分为UDF类（指类别，旧）和GenericUDF类，新版本的Hive陆续把部分UDF类的UDF，改写成了GenericUDF类的UDF。实现自己的Hive的UDF，一种是直接继承Hive中的org.apache.hadoop.hive.ql.UDF，另一种是继承org.apache.hadoop.hive.ql.udf.generic.GenericUDF。  </p>
+<ol>
+<li>第一种方法使用UDF函数的时候需要注意一下几点：<br>a）自定义UDF需要继承org.apache.hadoop.hive.ql.UDF。<br>b）需要实现evaluate函。<br>c）evaluate函数支持重载。<br>以下是两个数求和函数的UDF。evaluate函数代表两个整型数据相加，两个浮点型数据相加，可变长数据相加，Hive的UDF开发只需要重构UDF类的evaluate函数即可。例：  </li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.apache.hadoop.hive.ql.exec.UDF;</div><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Add</span> <span class="title">extends</span> <span class="title">UDF</span> </span>&#123;</div><div class="line"><span class="keyword">public</span> Integer evaluate(Integer a, Integer b) &#123;</div><div class="line">               <span class="keyword">if</span> (<span class="literal">null</span> == a || <span class="literal">null</span> == b) &#123;</div><div class="line">                               <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">               &#125; <span class="keyword">return</span> a + b;</div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="built_in">Double</span> evaluate(<span class="built_in">Double</span> a, <span class="built_in">Double</span> b) &#123;</div><div class="line">               <span class="keyword">if</span> (a == <span class="literal">null</span> || b == <span class="literal">null</span>)</div><div class="line">                               <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">                               <span class="keyword">return</span> a + b;</div><div class="line">               &#125;</div><div class="line"><span class="keyword">public</span> Integer evaluate(Integer... a) &#123;</div><div class="line">               int total = <span class="number">0</span>;</div><div class="line">               <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; a.length; i++)</div><div class="line">                               <span class="keyword">if</span> (a[i] != <span class="literal">null</span>)</div><div class="line">                                              total += a[i];</div><div class="line">                                              <span class="keyword">return</span> total;</div><div class="line">                               &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.GenericUDF相比较于UDF，具有更加丰富的功能，一个是可以接受和返回复杂数据类型了，例如Array什么的结构体类型，而不像UDF类那样只能是int、string之类的基本类型（当然真正代码中定义的是包装过的后缀为Writable的类型，但还是表示基本类型）；新的改进可以接受可变长度以及无限长度的参数了，因为可以用数组来表示输入参数了，而不需要像UDF类的实现类那样，要几种参数组合，就得重载几种方法；最重要的改进是可以通过DeferredObject类来实现所谓的”short-circuit“优化。数组的方式传递进参数，将会给用户开发自己的UDF提供极大的便捷性。不足的是GenericUDF的输出只能有一列，当然这个功能可以通过UDTF来弥补。<br>下面给出一个例子讲解下GenericUDF的使用：  </p>
+<p>我将通过建立一个UDF函数：containsString，来加深对该API了解，该函数接收两个参数：<br>一个String的列表（list）<br>一个String<br>根据该list中是否包含所提供的string来返回true或者false，如下：<br>containsString(List(“a”, “b”, “c”), “b”); // true  </p>
+<p>containsString(List(“a”, “b”, “c”), “d”); // false  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> ComplexUDFExample <span class="keyword">extends</span> GenericUDF &#123;  </div><div class="line">  </div><div class="line">  ListObjectInspector listOI;  </div><div class="line">  StringObjectInspector elementOI;  </div><div class="line">  </div><div class="line">  <span class="meta">@Override</span>  </div><div class="line">  <span class="keyword">public</span> <span class="built_in">String</span> getDisplayString(<span class="built_in">String</span>[] arg0) &#123;  </div><div class="line">    <span class="keyword">return</span> <span class="string">"arrayContainsExample()"</span>; <span class="comment">// this should probably be better  </span></div><div class="line">  &#125;  </div><div class="line">  </div><div class="line">  <span class="meta">@Override</span>  </div><div class="line">  <span class="keyword">public</span> ObjectInspector initialize(ObjectInspector[] <span class="built_in">arguments</span>) throws UDFArgumentException &#123;  </div><div class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length != <span class="number">2</span>) &#123;  </div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> UDFArgumentLengthException(<span class="string">"arrayContainsExample only takes 2 arguments: List&lt;T&gt;, T"</span>);  </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">// 1. 检查是否接收到正确的参数类型  </span></div><div class="line">    ObjectInspector a = <span class="built_in">arguments</span>[<span class="number">0</span>];  </div><div class="line">    ObjectInspector b = <span class="built_in">arguments</span>[<span class="number">1</span>];  </div><div class="line">    <span class="keyword">if</span> (!(a <span class="keyword">instanceof</span> ListObjectInspector) || !(b <span class="keyword">instanceof</span> StringObjectInspector)) &#123;  </div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> UDFArgumentException(<span class="string">"first argument must be a list / array, second argument must be a string"</span>);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">this</span>.listOI = (ListObjectInspector) a;  </div><div class="line">    <span class="keyword">this</span>.elementOI = (StringObjectInspector) b;  </div><div class="line">      </div><div class="line">    <span class="comment">// 2. 检查list是否包含的元素都是string  </span></div><div class="line">    <span class="keyword">if</span>(!(listOI.getListElementObjectInspector() <span class="keyword">instanceof</span> StringObjectInspector)) &#123;  </div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> UDFArgumentException(<span class="string">"first argument must be a list of strings"</span>);  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">// 返回类型是boolean，所以我们提供了正确的object inspector  </span></div><div class="line">    <span class="keyword">return</span> PrimitiveObjectInspectorFactory.javaBooleanObjectInspector;  </div><div class="line">  &#125;  </div><div class="line">    </div><div class="line">  <span class="meta">@Override</span>  </div><div class="line">  <span class="keyword">public</span> <span class="built_in">Object</span> evaluate(DeferredObject[] <span class="built_in">arguments</span>) throws HiveException &#123;  </div><div class="line">      </div><div class="line">    <span class="comment">// 利用object inspectors从传递的对象中得到list与string  </span></div><div class="line">    List&lt;<span class="built_in">String</span>&gt; list = (List&lt;<span class="built_in">String</span>&gt;) <span class="keyword">this</span>.listOI.getList(<span class="built_in">arguments</span>[<span class="number">0</span>].get());  </div><div class="line">    <span class="built_in">String</span> arg = elementOI.getPrimitiveJavaObject(<span class="built_in">arguments</span>[<span class="number">1</span>].get());  </div><div class="line">      </div><div class="line">    <span class="comment">// 检查空值  </span></div><div class="line">    <span class="keyword">if</span> (list == <span class="literal">null</span> || arg == <span class="literal">null</span>) &#123;  </div><div class="line">      <span class="keyword">return</span> <span class="literal">null</span>;  </div><div class="line">    &#125;  </div><div class="line">      </div><div class="line">    <span class="comment">// 判断是否list中包含目标值  </span></div><div class="line">    <span class="keyword">for</span>(<span class="built_in">String</span> s: list) &#123;  </div><div class="line">      <span class="keyword">if</span> (arg.equals(s)) <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>);  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">false</span>);  </div><div class="line">  &#125;  </div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>讲解：  </p>
+<p>1、该UDF用默认的构造器来初始化</p>
+<p>2、udf.initialize() 被调用，传人udf参数的object instructors数组，（ListObjectInstructor, StringObjectInstructor）<br>1) 检查传人的参数有两个与该参数的数据类型是正确的（见上面）<br>2) 我们保存object instructors用以供evaluate()使用（listOI, elementOI）<br>3) 返回 object inspector，让Hive能够读取该函数的返回结果（BooleanObjectInspector）</p>
+<p>3、对于查询中的每一行，evaluate方法都会被调用，传人该行的指定的列（例如，evaluate(List(“a”, “b”, “c”), “c”) ）。<br>1) 我们利用initialize方法中存储的object instructors来抽取出正确的值。<br>2) 我们在这处理我们的逻辑然后用initialize返回的object inspector来序列化返回来的值(list.contains(elemement) ? true : false)。</p>
+<h3 id="UDAF"><a href="#UDAF" class="headerlink" title="UDAF"></a>UDAF</h3><p>1、Hive查询数据时，有些聚类函数在HQL没有自带，需要用户自定义实现。<br>2、用户自定义聚合函数: Sum, Average…… n – 1<br>UDAF（User- Defined Aggregation Funcation）<br>一、用法<br>1、两个包是必须import的 org.apache.hadoop.hive.ql.exec.UDAF和 org.apache.hadoop.hive.ql.exec.UDAFEvaluator。<br>2、函数类需要继承UDAF类，内部类Evaluator实UDAFEvaluator接口。<br>3、Evaluator需要实现 init、iterate、terminatePartial、merge、terminate这几个函数。<br>a）init函数实现接口UDAFEvaluator的init函数。<br>b）iterate接收传入的参数，并进行内部的轮转。其返回类型为boolean。<br>c）terminatePartial无参数，其为iterate函数轮转结束后，返回轮转数据，terminatePartial类似于hadoop的Combiner。<br>d）merge接收terminatePartial的返回结果，进行数据merge操作，其返回类型为boolean。<br>e）terminate返回最终的聚集函数结果。<br>使用方法如下：  </p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">import org.apache.hadoop.hive.ql.exec.UDAF;</div><div class="line">import org.apache.hadoop.hive.ql.exec.UDAFEvaluator;</div><div class="line">public class Avg extends UDAF &#123;</div><div class="line">    public static class AvgState &#123;</div><div class="line">        private long mCount;</div><div class="line">        private double mSum;</div><div class="line">    &#125;</div><div class="line">    public static class AvgEvaluator implements UDAFEvaluator &#123;</div><div class="line">        AvgState <span class="keyword">state</span>;</div><div class="line">        public AvgEvaluator() &#123;</div><div class="line">                           super();</div><div class="line">                           <span class="keyword">state</span> = new AvgState();</div><div class="line">                           init();</div><div class="line">        &#125;</div><div class="line">        /** * init函数类似于构造函数，用于UDAF的初始化 */</div><div class="line">        public void init() &#123;</div><div class="line">                 <span class="keyword">state</span>.mSum = <span class="number">0</span>;</div><div class="line">                 <span class="keyword">state</span>.mCount = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        /** * iterate接收传入的参数，并进行内部的轮转。其返回类型为boolean * * @param o * @return */</div><div class="line">        public boolean iterate(Double o) &#123;</div><div class="line">                 if (o != null) &#123;</div><div class="line">                           <span class="keyword">state</span>.mSum += o;</div><div class="line">                           <span class="keyword">state</span>.mCount++;</div><div class="line">                 &#125; return true;</div><div class="line">        &#125;</div><div class="line">        /** * terminatePartial无参数，其为iterate函数轮转结束后，返回轮转数据， * terminatePartial类似于hadoop的Combiner * * @return */</div><div class="line">        public AvgState terminatePartial() &#123;</div><div class="line">                 // combiner</div><div class="line">                 return <span class="keyword">state</span>.mCount == <span class="number">0</span> ? null : <span class="keyword">state</span>;</div><div class="line">        &#125;</div><div class="line">        /** * merge接收terminatePartial的返回结果，进行数据merge操作，其返回类型为boolean * * @param o * @return */</div><div class="line">        public boolean terminatePartial(Double o) &#123;                </div><div class="line">                 if (o != null) &#123;</div><div class="line">                           <span class="keyword">state</span>.mCount += o.mCount;</div><div class="line">                           <span class="keyword">state</span>.mSum += o.mSum;</div><div class="line">                 &#125;</div><div class="line">                 return true;</div><div class="line">        &#125;</div><div class="line">        /** * terminate返回最终的聚集函数结果 * * @return */</div><div class="line">        public Double terminate() &#123;</div><div class="line">                 return <span class="keyword">state</span>.mCount == <span class="number">0</span> ? null : Double.valueOf(<span class="keyword">state</span>.mSum / <span class="keyword">state</span>.mCount);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="UDTF"><a href="#UDTF" class="headerlink" title="UDTF"></a>UDTF</h3><p>UDF与GenericUDF函数是操作单个数据域。它们必须要返回一个值。但是这并不适用于所用的数据处理任务。Hive可以存储许多类型的数据，而有时候我们并不想单数据域输入、单数据域输出。对于每一行的输入，可能我们想输出多行，又或是不输出，举个例子，想一下函数explode（一个hive内置函数）的作用。<br>同样，可能我们也想输出多列，而不是输出单列。<br>以上所有的要求我们可以用UDTF去完成。  </p>
+<p>示例：<br>首先我们先假设我们想清洗people这张表中的人名，这个新的表有：<br>1、姓和名 两个分开的列<br>2、所有记录都包含姓名<br>3、每条记录或有包含多个人名（eg Nick and Nicole Smith）  </p>
+<p>我门将使用继承org.apache.hadoop.hive.ql.udf.generic.GenericUDTF<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//该方法中，我们将指定输入输出参数：输入参数的ObjectInspector与输出参数的StructObjectInspector  </span></div><div class="line"><span class="keyword">abstract</span> <span class="function">StructObjectInspector <span class="title">initialize</span><span class="params">(ObjectInspector[] args)</span> <span class="keyword">throws</span> UDFArgumentException</span>;   </div><div class="line"><span class="comment">//我们将处理一条输入记录，输出若干条结果记录  </span></div><div class="line"><span class="keyword">abstract</span> <span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(Object[] record)</span> <span class="keyword">throws</span> HiveException</span>;  </div><div class="line"><span class="comment">//当没有记录处理的时候该方法会被调用，用来清理代码或者产生额外的输出  </span></div><div class="line"><span class="keyword">abstract</span> <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> HiveException</span>;</div></pre></td></tr></table></figure></p>
+<p>完整代码：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> class NameParserGenericUDTF extends GenericUDTF &#123;  </div><div class="line">  </div><div class="line">      <span class="keyword">private</span> PrimitiveObjectInspector stringOI = <span class="keyword">null</span>;  </div><div class="line">  </div><div class="line">      @Override  </div><div class="line">      <span class="keyword">public</span> StructObjectInspector initialize(ObjectInspector[] args) UDFArgumentException &#123;  </div><div class="line">  </div><div class="line">        <span class="keyword">if</span> (args.length != <span class="number">1</span>) &#123;  </div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> UDFArgumentException(<span class="string">"NameParserGenericUDTF() takes exactly one argument"</span>);  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        <span class="keyword">if</span> (args[<span class="number">0</span>].getCategory() != ObjectInspector.Category.PRIMITIVE  </div><div class="line">            &amp;&amp; ((PrimitiveObjectInspector) args[<span class="number">0</span>]).getPrimitiveCategory() != PrimitiveObjectInspector.PrimitiveCategory.STRING) &#123;  </div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> UDFArgumentException(<span class="string">"NameParserGenericUDTF() takes a string as a parameter"</span>);  </div><div class="line">        &#125;  </div><div class="line">          </div><div class="line">        <span class="comment">// 输入格式（inspectors）  </span></div><div class="line">        stringOI = (PrimitiveObjectInspector) args[<span class="number">0</span>];  </div><div class="line">  </div><div class="line">        <span class="comment">// 输出格式（inspectors） -- 有两个属性的对象  </span></div><div class="line">        List&lt;<span class="keyword">String</span>&gt; fieldNames = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">String</span>&gt;(<span class="number">2</span>);  </div><div class="line">        List&lt;ObjectInspector&gt; fieldOIs = <span class="keyword">new</span> ArrayList&lt;ObjectInspector&gt;(<span class="number">2</span>);  </div><div class="line">        fieldNames.<span class="built_in">add</span>(<span class="string">"name"</span>);  </div><div class="line">        fieldNames.<span class="built_in">add</span>(<span class="string">"surname"</span>);  </div><div class="line">        fieldOIs.<span class="built_in">add</span>(PrimitiveObjectInspectorFactory.javaStringObjectInspector);  </div><div class="line">        fieldOIs.<span class="built_in">add</span>(PrimitiveObjectInspectorFactory.javaStringObjectInspector);  </div><div class="line">        <span class="keyword">return</span> ObjectInspectorFactory.getStandardStructObjectInspector(fieldNames, fieldOIs);  </div><div class="line">      &#125;  </div><div class="line">            </div><div class="line">      <span class="keyword">public</span> ArrayList&lt;<span class="keyword">Object</span>[]&gt; processInputRecord(<span class="keyword">String</span> name)&#123;  </div><div class="line">            ArrayList&lt;<span class="keyword">Object</span>[]&gt; result = <span class="keyword">new</span> ArrayList&lt;<span class="keyword">Object</span>[]&gt;();  </div><div class="line">            </div><div class="line">            <span class="comment">// 忽略null值与空值  </span></div><div class="line">            <span class="keyword">if</span> (name == <span class="keyword">null</span> || name.isEmpty()) &#123;  </div><div class="line">              <span class="keyword">return</span> result;  </div><div class="line">            &#125;  </div><div class="line">              </div><div class="line">            <span class="keyword">String</span>[] tokens = name.<span class="built_in">split</span>(<span class="string">"\\s+"</span>);  </div><div class="line">              </div><div class="line">            <span class="keyword">if</span> (tokens.length == <span class="number">2</span>)&#123;  </div><div class="line">                result.<span class="built_in">add</span>(<span class="keyword">new</span> <span class="keyword">Object</span>[] &#123; tokens[<span class="number">0</span>], tokens[<span class="number">1</span>] &#125;);  </div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> (tokens.length == <span class="number">4</span> &amp;&amp; tokens[<span class="number">1</span>].equals(<span class="string">"and"</span>))&#123;  </div><div class="line">                result.<span class="built_in">add</span>(<span class="keyword">new</span> <span class="keyword">Object</span>[] &#123; tokens[<span class="number">0</span>], tokens[<span class="number">3</span>] &#125;);  </div><div class="line">                result.<span class="built_in">add</span>(<span class="keyword">new</span> <span class="keyword">Object</span>[] &#123; tokens[<span class="number">2</span>], tokens[<span class="number">3</span>] &#125;);  </div><div class="line">            &#125;  </div><div class="line">              </div><div class="line">            <span class="keyword">return</span> result;  </div><div class="line">      &#125;  </div><div class="line">        </div><div class="line">      @Override  </div><div class="line">      <span class="keyword">public</span> <span class="keyword">void</span> process(<span class="keyword">Object</span>[] record) <span class="keyword">throws</span> HiveException &#123;  </div><div class="line">  </div><div class="line">        <span class="keyword">final</span> <span class="keyword">String</span> name = stringOI.getPrimitiveJavaObject(record[<span class="number">0</span>]).toString();  </div><div class="line">  </div><div class="line">        ArrayList&lt;<span class="keyword">Object</span>[]&gt; results = processInputRecord(name);  </div><div class="line">  </div><div class="line">        Iterator&lt;<span class="keyword">Object</span>[]&gt; it = results.iterator();  </div><div class="line">          </div><div class="line">        <span class="keyword">while</span> (it.hasNext())&#123;  </div><div class="line">            <span class="keyword">Object</span>[] r = it.next();  </div><div class="line">            forward(r);  </div><div class="line">        &#125;  </div><div class="line">      &#125;  </div><div class="line">  </div><div class="line">      @Override  </div><div class="line">      <span class="keyword">public</span> <span class="keyword">void</span> close() <span class="keyword">throws</span> HiveException &#123;  </div><div class="line">        <span class="comment">// do nothing  </span></div><div class="line">      &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>讲解：<br>该UDTF以string类型作为参数，返回一个拥有两个属性的对象，与GenericUDF比较相似，指定输入输出数据格式（objectinspector），以便hive能识别输入与输出。<br>我们为输入的string参数定义了数据格式PrimitiveObjectInspector<br>    <figure class="highlight plain"><figcaption><span>= (PrimitiveObjectInspector) args[0] ``` </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">定义输出数据格式（objectinspectors）需要我们先定义两个属性名称，因为（objectinspectors）需要读取每一个属性（在这个实例中，两个属性都是string类型）。</div></pre></td></tr></table></figure></p>
+<p>List<string> fieldNames = new ArrayList<string>(2);<br>fieldNames.add(“name”);<br>fieldNames.add(“surname”);  </string></string></p>
+<p>List<objectinspector> fieldOIs = new ArrayList<objectinspector>(2);<br>fieldOIs.add(PrimitiveObjectInspectorFactory.javaStringObjectInspector);<br>fieldOIs.add(PrimitiveObjectInspectorFactory.javaStringObjectInspector);  </objectinspector></objectinspector></p>
+<p>return ObjectInspectorFactory.getStandardStructObjectInspector(fieldNames, fieldOIs);<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">我们主要的处理逻辑放在这个比较直观的processInputRecord方法当中。分开逻辑处理有利我们进行更简单的单元测试，而不用涉及到繁琐的objectinspector。  </div><div class="line">最后，一旦得到结果就可以对其进行<span class="keyword">forward</span>，将其注册为hive处理后的输出记录对象。</div></pre></td></tr></table></figure></p>
+<p>while (it.hasNext()){<br>            Object[] r = it.next();<br>            forward(r);<br>    }<br>}<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">## 三、如何在Hive中使用UDF</div><div class="line">无论是UDF、UDTF、还是UDAF其使用方法都是一样的。  </div><div class="line"><span class="number">1.</span> 在hive中添加jar包：</div></pre></td></tr></table></figure></p>
+<p>hive&gt;add jar <your jar="" filepath=""><br>如：add jar  /home/hdfs/myUdf.jar<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">2. </span>创建临时函数</div></pre></td></tr></table></figure></your></p>
+<p>hive&gt;create temporary function avg_test as ‘&lt;类的全路径&gt;’<br>如： create temporary function avg_test as ‘hive.udaf.Avg’<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">3. </span>查询临时函数的注释信息</div><div class="line">如果在编写UDF时，你写了相关的注释信息，只需要使用如下命令就可以查看到：</div></pre></td></tr></table></figure></p>
+<p>查询可以使用的funtion列表<br>hive&gt;SHOW FUNCTIONS;<br>查询具体的function信息<br>hive&gt;desc function <your function="" name=""><br>如： desc function  avg_test<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">4.</span> 使用临时函数</div><div class="line">创建完成的temporary <span class="function"><span class="keyword">function</span></span>使用时和hive内置的<span class="function"><span class="keyword">function</span></span>没有区别，如</div></pre></td></tr></table></figure></your></p>
+<p>hive&gt;select avg_test(scores.math) from scores;<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">5. </span>销毁临时函数</div></pre></td></tr></table></figure></p>
+<p>hive&gt;drop temporary function avg_test;<br>```</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><blockquote>
+<p>Hive2.1中使用GenericUDF时，使用了一些技巧，在其基础上封装了BaseMaskUDF，虽然不能被直接使用，但是可以将其复制出来为己所用，下章将会讲解下BaseMaskUDF，完成后将会把地址放在文下。</p>
+</blockquote>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/05/14/关联规则-FP-Growth/" rel="prev">下一篇：关联规则-FP-Growth</a>
+             </li>
+           
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      <div id="hot-news-wrap"></div>
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "4012445f10d64eeda48ae75a222ef4f4";  
+  var yunHotNewsWrap = "hot-news-wrap";   //放置的DOM节点ID 或 样式类
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2hvdF9uZXdzX3NjcmlwdC5odG1s", true);
+</script>
+
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+		<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+		<script>
+		var cloudTieConfig = {
+		  url: document.location.href, 
+		  sourceId: "",
+		  productKey: "4012445f10d64eeda48ae75a222ef4f4",
+		  target: "cloud-tie-wrapper"
+		};
+		var yunManualLoad = true;
+		Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+		</script>
+	
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>AmazingWu &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>AmazingWu的技术部落</span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>
