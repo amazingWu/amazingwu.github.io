@@ -186,7 +186,7 @@
         <div class="entry-content">
           <h2 id="讲解及代码实现"><a href="#讲解及代码实现" class="headerlink" title="讲解及代码实现"></a>讲解及代码实现</h2><p>&emsp;&emsp;完全背包是在N种物品中选取若干件（同一种物品可多次选取）放在空间为V的背包里，每种物品的体积为C1，C2，…，Cn，与之相对应的价值为W1,W2，…，Wn.求解怎么装物品可使背包里物品总价值最大。<br><a id="more"></a><br>动态规划（DP）：<br>&emsp;&emsp;1） 子问题定义：F[i][j]表示前i种物品中选取若干件物品放入剩余空间为j的背包中所能得到的最大价值。<br>&emsp;&emsp;2） 根据第i种物品放多少件进行决策。<br><img src="http://hi.csdn.net/attachment/201111/26/1828304_13222948489uuU.gif" alt="image"><br>&emsp;&emsp;其中F[i-1][j-K<em>C[i]]+K</em>W[i]表示前i-1种物品中选取若干件物品放入剩余空间为j-K*C[i]的背包中所能得到的最大价值加上k件第i种物品；<br>&emsp;&emsp;设物品种数为N，背包容量为V，第i种物品体积为C[i]，第i种物品价值为W[i]。<br>非递归实现如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fullPackage</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> v,<span class="keyword">int</span> [] c,<span class="keyword">int</span> [] w)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> [] f=<span class="keyword">new</span> <span class="keyword">int</span>[v+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=c[i];j&lt;=v;j++)&#123;</div><div class="line">            f[j]=Math.max(f[j],f[j-c[i]]+w[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f[v];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&emsp;&emsp;因为是求最大值，所以正序去更新f数组便可。</p>
+<p>&emsp;&emsp;这里是正序去更新数组，逆序的话就变成了0-1背包。</p>
 <h2 id="完全背包例题："><a href="#完全背包例题：" class="headerlink" title="完全背包例题："></a>完全背包例题：</h2><blockquote>
 <p>题目描述<br>设有n种物品，每种物品有一个重量及一个价值。但每种物品的数量是无限的，同时有一个背包，最大载重量为M，今从n种物品中选取若干件(同一种物品可以多次选取)，使其重量的和小于等于M，而价值的和为最大。  </p>
 <p>输入<br>第一行：两个整数，M(背包容量，M&lt;=200)和N(物品数量，N&lt;=30)；<br>第2..N+1行：每行二个整数Wi,Ci，表示每个物品的重量和价值。</p>
@@ -222,7 +222,7 @@
 </script>
 
 <section id="comment">
-  <!-- <h1 class="title">Comments</h1> -->
+  <!-- <h1 class="title">留言</h1> -->
 
   
 		<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
