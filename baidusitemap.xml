@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://amazingwu.xyz/2017/05/22/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85/</loc>
+    <lastmod>2017-05-22T02:51:59.459Z</lastmod>
+    <data>
+        <display>
+        <title>完全背包</title>
+        <pubTime>2017-05-22T02:46:45.000Z</pubTime>
+        
+        <tag>背包问题</tag>
+         
+        <tag>动态规划</tag>
+         
+         
+           
+             
+              <breadCrumb title="背包问题" url="http://amazingwu.xyz/categories/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+          
+             
+              <breadCrumb title="动态规划" url="http://amazingwu.xyz/categories/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://amazingwu.xyz/2017/05/20/Hive%E7%9A%84UDF%E3%80%81UDAF%E3%80%81UDTF/</loc>
     <lastmod>2017-05-20T02:20:15.497Z</lastmod>
     <data>
@@ -36,9 +62,9 @@
         <title>关联规则-FP-Growth</title>
         <pubTime>2017-05-14T08:24:53.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>关联规则</tag>
          
@@ -66,9 +92,9 @@
         <title>关联规则-Apriori算法</title>
         <pubTime>2017-05-14T07:20:23.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>关联规则</tag>
          
@@ -96,9 +122,9 @@
         <title>机器学习初涉-高斯混合模型聚类</title>
         <pubTime>2017-05-14T02:22:21.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>聚类算法</tag>
          
@@ -118,7 +144,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://amazingwu.xyz/2017/05/13/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%9D%E6%B6%89-%E5%B1%82%E6%AC%A1%E8%81%9A%E7%B1%BB/</loc>
     <lastmod>2017-05-13T04:34:49.875Z</lastmod>
@@ -127,9 +152,9 @@
         <title>机器学习初涉--层次聚类</title>
         <pubTime>2017-05-13T02:48:24.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>聚类算法</tag>
          
@@ -157,9 +182,9 @@
         <title>机器学习初涉--k近邻算法</title>
         <pubTime>2017-05-10T02:48:24.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>分类算法</tag>
          
@@ -187,9 +212,9 @@
         <title>机器学习初涉—-决策树分类</title>
         <pubTime>2017-05-08T06:42:49.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>分类算法</tag>
          
@@ -217,9 +242,9 @@
         <title>机器学习初涉--贝叶斯分类</title>
         <pubTime>2017-04-06T02:48:24.000Z</pubTime>
         
-        <tag>算法</tag>
-         
         <tag>机器学习</tag>
+         
+        <tag>算法</tag>
          
         <tag>分类算法</tag>
          

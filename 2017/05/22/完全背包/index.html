@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="maven多级项目使用slf4j+log4j，以及自定义配置文件路径"/>
+      <meta property="og:title" content="完全背包"/>
   
   <!--Open Graph Description-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>maven多级项目使用slf4j+log4j，以及自定义配置文件路径 - AmazingWu</title>
+  <title>完全背包 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -173,61 +173,27 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            maven多级项目使用slf4j+log4j，以及自定义配置文件路径
+            完全背包
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2017-03-23
+          2017-05-22
           </p>
 		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>我的maven多级结构如下：</p>
-<pre><code>sysimple
-    |--integration
-    |--commons
-        |--pom.xml
-    |--plugins
-        |--pom.xml
-    |--web
-        |--pom.xml
-    |--pom.xml
-</code></pre><p>其中依赖情况是： <a id="more"></a><br>web依赖于commons和plugins。plugins依赖于commons。integration中定义了打包的方法与资源文件。</p>
-<p>首先在sysimple/pom.xml中管理slf4j的版本：</p>
-<pre><code>在&lt;dependencyManagement&gt;&lt;/dependencyManagement&gt;中间添加：
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-         &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-         &lt;version&gt;1.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-         &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-         &lt;version&gt;1.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-</code></pre><p>由于所有的模块均引用commons，因此只需要在commons中添加slf4j的依赖即可：</p>
-<pre><code>&lt;dependency&gt;
-     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-     &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-     &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre><p>下面即可使用slf4j，在需要使用的地方以如下方式使用：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartWeb</span> &#123;</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(StartWeb.<span class="keyword">class</span>);</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args)&#123;</div><div class="line">		logger.info(<span class="string">"this is a example"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>默认情况下，slf4j-log4j会在src/main/java中查找log4j.properties，如果需要指定配置文件的位置，需要在启动时手动加入Jvm的参数，我的例子中添加了-Dlog4j.configuration=file:../integration/conf/sysimple-log4j.properties。在使用绝对路径时是不需要使用file:的，linux端也不需要file:。在运行的时候，slf4j会根据你指定的路径去加载配置文件。配置文件的内容我给出以下例子， 读者可以另行查找配置文件的格式：</p>
-<pre><code>log4j.rootLogger=INFO,system.out  
-log4j.appender.system.out=org.apache.log4j.ConsoleAppender  
-log4j.appender.system.out.layout=org.apache.log4j.PatternLayout  
-log4j.appender.system.out.layout.ConversionPattern=SysimpleServer Logger--&gt;%5p{%F:%L}-%m%n 
-log4j.logger.thisProject.file=INFO,thisProject.file.out  
-log4j.appender.thisProject.file.out=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.thisProject.file.out.File=../integration/logs/sysimple-logs.log   
-log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout 
-</code></pre>
+          <h2 id="讲解及代码实现"><a href="#讲解及代码实现" class="headerlink" title="讲解及代码实现"></a>讲解及代码实现</h2><p>&emsp;&emsp;完全背包是在N种物品中选取若干件（同一种物品可多次选取）放在空间为V的背包里，每种物品的体积为C1，C2，…，Cn，与之相对应的价值为W1,W2，…，Wn.求解怎么装物品可使背包里物品总价值最大。<br><a id="more"></a><br>动态规划（DP）：<br>&emsp;&emsp;1） 子问题定义：F[i][j]表示前i种物品中选取若干件物品放入剩余空间为j的背包中所能得到的最大价值。<br>&emsp;&emsp;2） 根据第i种物品放多少件进行决策。<br><img src="http://hi.csdn.net/attachment/201111/26/1828304_13222948489uuU.gif" alt="image"><br>&emsp;&emsp;其中F[i-1][j-K<em>C[i]]+K</em>W[i]表示前i-1种物品中选取若干件物品放入剩余空间为j-K*C[i]的背包中所能得到的最大价值加上k件第i种物品；<br>&emsp;&emsp;设物品种数为N，背包容量为V，第i种物品体积为C[i]，第i种物品价值为W[i]。<br>非递归实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fullPackage</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> v,<span class="keyword">int</span> [] c,<span class="keyword">int</span> [] w)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> [] f=<span class="keyword">new</span> <span class="keyword">int</span>[v+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=c[i];j&lt;=v;j++)&#123;</div><div class="line">            f[j]=Math.max(f[j],f[j-c[i]]+w[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f[v];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;因为是求最大值，所以正序去更新f数组便可。</p>
+<h2 id="完全背包例题："><a href="#完全背包例题：" class="headerlink" title="完全背包例题："></a>完全背包例题：</h2><blockquote>
+<p>题目描述<br>设有n种物品，每种物品有一个重量及一个价值。但每种物品的数量是无限的，同时有一个背包，最大载重量为M，今从n种物品中选取若干件(同一种物品可以多次选取)，使其重量的和小于等于M，而价值的和为最大。  </p>
+<p>输入<br>第一行：两个整数，M(背包容量，M&lt;=200)和N(物品数量，N&lt;=30)；<br>第2..N+1行：每行二个整数Wi,Ci，表示每个物品的重量和价值。</p>
+<p>输出<br>仅一行，一个数，表示最大总价值。</p>
+<p>样例输入<br>10 4<br>2  1<br>3  3<br>4  5<br>7  9<br>样例输出<br>max=12</p>
+</blockquote>
+
         </div>
       </article>
     </div>
@@ -238,13 +204,9 @@ log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2017/03/15/jvm垃圾收集算法/" rel="prev">下一篇：jvm垃圾收集算法</a>
+              <a href="/2017/05/20/Hive的UDF、UDAF、UDTF/" rel="prev">下一篇：Hive的UDF、UDAF、UDTF</a>
              </li>
            
-           
-              <li class="next">
-              <a href="/2017/04/06/机器学习初涉-贝叶斯分类/" rel="prev">上一篇：机器学习初涉--贝叶斯分类</a>
-            </li>
            
           </ul>
        </div>
