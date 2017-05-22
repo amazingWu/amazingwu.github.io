@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!-- Head tag -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+  <meta name="description" content="目前就读于北京理工大学软件学院">
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="AmazingWu">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="多重背包"/>
+  
+  <!--Open Graph Description-->
+  
+      <meta property="og:description" content="目前就读于北京理工大学软件学院" />
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="AmazingWu"/>
+  <!--Type page-->
+  
+      <meta property="og:type" content="article" />
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- 百度统计 -->
+    <script>
+	var _hmt = _hmt || [];
+	(function() {
+  	var hm = document.createElement("script");
+  	hm.src = "https://hm.baidu.com/hm.js?c0451e16533956173997b85f7a8de666";
+  	var s = document.getElementsByTagName("script")[0]; 
+  	s.parentNode.insertBefore(hm, s);
+	})();
+    </script>
+  <!-- Title -->
+  
+  <title>多重背包 - AmazingWu</title>
+
+
+  <link rel="shortcut icon" href="/favicon.ico">
+    <!--font-awesome-->
+  <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn1.lncld.net/static/js/av-min-1.2.1.js"></script>
+  <script>AV.initialize("vKLeKzRXEBuUzhmWMw2T1uee-gzGzoHsz", "Jg5qaNmuHFK0hn5xQ4YfpBc6");</script>
+  <!--百度站长统计-->
+  <script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?b32173acdfb3bd036446baf9f915fba8";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/images/header.png" alt="AmazingWu" height="60">
+        
+      </a>
+    </div>
+    <a class="header-name" href="/">
+            <span>AmazingWu</span>
+            的部落宅
+        </a>
+    <!-- navbar -->
+    <nav class="navbar">
+      <!--  nav links -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  <i class="fa fa-home "></i>
+                
+                首页
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  <i class="fa fa-archive "></i>
+                
+                归档
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  <i class="fa fa-user "></i>
+                
+                关于我
+              </a>
+            </li>
+          
+            <li>
+              <a href="/project">
+                
+                  <i class="fa fa-folder-open "></i>
+                
+                感兴趣的项目
+              </a>
+            </li>
+          
+            <li>
+              <a href="http://amazingwu.ittun.com/">
+                
+                  <i class="fa fa-photo "></i>
+                
+                相册
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            多重背包
+            
+          </h1>
+         
+        </div>
+         <p class="a-posted-on">
+          2017-05-22
+          </p>
+		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <blockquote>
+<p>题目：有N种物品和一个容量为V的背包。第i种物品最多有n[i]件可用，每件费用是c[i]，价值是w[i]。求解将哪些物品装入背包可使这些物品的费用总和不超过背包容量，且价值总和最大。<br><a id="more"></a></p>
+<h2 id="基本算法"><a href="#基本算法" class="headerlink" title="基本算法"></a>基本算法</h2><p>这题目和完全背包问题很类似。基本的方程只需将完全背包问题的方程略微一改即可，因为对于第i种物品有n[i]+1种策略：取0件，取1件……取n[i]件。令f[i][v]表示前i种物品恰放入一个容量为v的背包的最大权值，则有状态转移方程：</p>
+</blockquote>
+<p>f[i][v]=max{f[i-1][v-k<em>c[i]]+k</em>w[i]|0&lt;=k&lt;=n[i]}</p>
+<p>复杂度是O(V*Σn[i])。  </p>
+<p>相应的代码实现为：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public static int MultiPackage(int n,int v,int <span class="comment">[]</span>w,int <span class="comment">[]</span>c,int <span class="comment">[]</span> num)&#123;</div><div class="line">        int <span class="comment">[]</span><span class="comment">[]</span> f=new int<span class="comment">[n+1]</span><span class="comment">[v+1]</span>;</div><div class="line">        for (int i=1;i&lt;=n;i++)&#123;</div><div class="line">            f<span class="comment">[i]</span><span class="comment">[0]</span>=0;</div><div class="line">            for (int j=w<span class="comment">[i]</span>;j&lt;=v;j++)&#123;</div><div class="line">                int ncount=Math.min(num<span class="comment">[i]</span>,j/w<span class="comment">[i]</span>);</div><div class="line">                for (int k=0;k&lt;=ncount;k++)&#123;</div><div class="line">                    f<span class="comment">[i]</span><span class="comment">[j]</span>=Math.max(f<span class="comment">[i]</span><span class="comment">[j]</span>,f<span class="comment">[i-1]</span><span class="comment">[j-k*w<span class="comment">[i]</span>]</span>+k*c<span class="comment">[i]</span>);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return f<span class="comment">[n]</span><span class="comment">[v]</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="转化为0-1-背包的问题"><a href="#转化为0-1-背包的问题" class="headerlink" title="转化为0-1 背包的问题"></a>转化为0-1 背包的问题</h2><p>另一种好想好写的基本方法是转化为0-1背包求解：把第i种物品换成n[i]件01背包中的物品，则得到了物品数为Σn[i]的01背包问题，直接求解，复杂度仍然是O(V*Σn[i])。<br>简单的说就是把所有的物品全部展开放在一个数组中，当做0-1背包来解决。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//o1背包求解</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">int</span> <span class="title">ZeroOnePackage</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> v,<span class="keyword">int</span> [] w,<span class="keyword">int</span> [] c)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> [] f=<span class="keyword">new</span> <span class="keyword">int</span>[v+<span class="number">1</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=v;j&gt;=w[i];j--)&#123;</div><div class="line">            f[j]=Math.max(f[j],f[j-w[i]]+c[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> f[v];</div><div class="line">&#125;</div><div class="line">    </div><div class="line"><span class="comment">//多重背包求解</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">int</span> <span class="title">MultiPackage_2</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> v,<span class="keyword">int</span> []w,<span class="keyword">int</span> []c,<span class="keyword">int</span> [] num)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> length=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=num[i];j++)&#123;</div><div class="line">            length++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span>[] w_1=<span class="keyword">new</span> <span class="keyword">int</span>[length+<span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span>[] c_1=<span class="keyword">new</span> <span class="keyword">int</span>[length+<span class="number">1</span>];</div><div class="line">    <span class="keyword">int</span> index=<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=num[i];j++)&#123;</div><div class="line">            w_1[index]=w[i];</div><div class="line">            c_1[index++]=c[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">return</span>  <span class="title">ZeroOnePackage</span><span class="params">(length,v,w_1,c_1)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>但是我们期望将它转化为01背包问题之后能够像完全背包一样降低复杂度(O(VN))。仍然考虑二进制的思想，我们考虑把第i种物品换成若干件物品，使得原问题中第i种物品可取的每种策略——取0..n[i]件——均能等价于取若干件代换以后的物品。另外，取超过n[i]件的策略必不能出现。</p>
+<p>方法是：将第i种物品分成若干件物品，其中每件物品有一个系数，这件物品的费用和价值均是原来的费用和价值乘以这个系数。使这些系数分别为1,2,4,…,2^(k-1), n[i]-2^k +1，且k是满足n[i]-2^k+1&gt;0的最大整数。例如，如果n[i]为13，就将这种物品分成系数分别为1,2,4,6的四件物品。</p>
+<p>分成的这几件物品的系数和为n[i]，表明不可能取多于n[i]件的第i种物品。另外这种方法也能保证对于0..n[i]间的每一个整数，均可以用若干个系数的和表示，这个证明可以分0..2^k -1和2^k..n[i]两段来分别讨论得出，并不难，希望你自己思考尝试一下。</p>
+<p>这样就将第i种物品分成了O(log n[i])种物品，将原问题转化为了复杂度为<math>O(V*Σlog n[i])的01背包问题，是很大的改进。</math></p>
+<hr>
+<p>O(VN)的算法<br> 多重背包问题同样有O(VN)的算法。这个算法基于基本算法的状态转移方程，但应用单调队列的方法使每个状态的值可以以均摊O(1)的时间求解。由于用单调队列优化的DP已超出了NOIP的范围，故本文不再展开讲解。</p>
+
+        </div>
+      </article>
+    </div>
+    <!-- Pre or Next -->
+    
+	<div class="container" >
+		
+           <ul class="pager">
+    	     
+      	     <li class="previous">
+              <a href="/2017/05/22/0-1背包/" rel="prev">下一篇：0-1背包</a>
+             </li>
+           
+           
+          </ul>
+       </div>
+　　　　<!-- Comments -->
+    <div class="container">
+      <div id="hot-news-wrap"></div>
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "4012445f10d64eeda48ae75a222ef4f4";  
+  var yunHotNewsWrap = "hot-news-wrap";   //放置的DOM节点ID 或 样式类
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2hvdF9uZXdzX3NjcmlwdC5odG1s", true);
+</script>
+
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+		<div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+		<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+		<script>
+		var cloudTieConfig = {
+		  url: document.location.href, 
+		  sourceId: "",
+		  productKey: "4012445f10d64eeda48ae75a222ef4f4",
+		  target: "cloud-tie-wrapper"
+		};
+		var yunManualLoad = true;
+		Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vcGMvbGl2ZXNjcmlwdC5odG1s", true);
+		</script>
+	
+</section>
+
+
+    </div>
+   
+　　　　
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>AmazingWu &copy; 2017</span>
+    
+      <span class="split">|</span>
+      <span>AmazingWu的技术部落</span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+</body>
+
+</html>

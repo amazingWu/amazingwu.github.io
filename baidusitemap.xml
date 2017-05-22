@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://amazingwu.xyz/2017/05/22/%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85/</loc>
+    <lastmod>2017-05-22T06:09:23.033Z</lastmod>
+    <data>
+        <display>
+        <title>多重背包</title>
+        <pubTime>2017-05-22T06:05:19.000Z</pubTime>
+        
+        <tag>背包问题</tag>
+         
+        <tag>动态规划</tag>
+         
+         
+           
+             
+              <breadCrumb title="背包问题" url="http://amazingwu.xyz/categories/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"/>
+          
+             
+              <breadCrumb title="动态规划" url="http://amazingwu.xyz/categories/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://amazingwu.xyz/2017/05/22/0-1%E8%83%8C%E5%8C%85/</loc>
     <lastmod>2017-05-22T04:58:20.386Z</lastmod>
     <data>
