@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="maven多级项目使用slf4j+log4j，以及自定义配置文件路径"/>
+      <meta property="og:title" content="装饰者模式"/>
   
   <!--Open Graph Description-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>maven多级项目使用slf4j+log4j，以及自定义配置文件路径 - AmazingWu</title>
+  <title>装饰者模式 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -173,61 +173,24 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            maven多级项目使用slf4j+log4j，以及自定义配置文件路径
+            装饰者模式
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2017-03-23
+          2017-05-25
           </p>
 		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>我的maven多级结构如下：</p>
-<pre><code>sysimple
-    |--integration
-    |--commons
-        |--pom.xml
-    |--plugins
-        |--pom.xml
-    |--web
-        |--pom.xml
-    |--pom.xml
-</code></pre><p>其中依赖情况是： <a id="more"></a><br>web依赖于commons和plugins。plugins依赖于commons。integration中定义了打包的方法与资源文件。</p>
-<p>首先在sysimple/pom.xml中管理slf4j的版本：</p>
-<pre><code>在&lt;dependencyManagement&gt;&lt;/dependencyManagement&gt;中间添加：
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-         &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-         &lt;version&gt;1.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-         &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-         &lt;version&gt;1.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-</code></pre><p>由于所有的模块均引用commons，因此只需要在commons中添加slf4j的依赖即可：</p>
-<pre><code>&lt;dependency&gt;
-     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-     &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-     &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre><p>下面即可使用slf4j，在需要使用的地方以如下方式使用：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartWeb</span> &#123;</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(StartWeb.<span class="keyword">class</span>);</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args)&#123;</div><div class="line">		logger.info(<span class="string">"this is a example"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>默认情况下，slf4j-log4j会在src/main/java中查找log4j.properties，如果需要指定配置文件的位置，需要在启动时手动加入Jvm的参数，我的例子中添加了-Dlog4j.configuration=file:../integration/conf/sysimple-log4j.properties。在使用绝对路径时是不需要使用file:的，linux端也不需要file:。在运行的时候，slf4j会根据你指定的路径去加载配置文件。配置文件的内容我给出以下例子， 读者可以另行查找配置文件的格式：</p>
-<pre><code>log4j.rootLogger=INFO,system.out  
-log4j.appender.system.out=org.apache.log4j.ConsoleAppender  
-log4j.appender.system.out.layout=org.apache.log4j.PatternLayout  
-log4j.appender.system.out.layout.ConversionPattern=SysimpleServer Logger--&gt;%5p{%F:%L}-%m%n 
-log4j.logger.thisProject.file=INFO,thisProject.file.out  
-log4j.appender.thisProject.file.out=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.thisProject.file.out.File=../integration/logs/sysimple-logs.log   
-log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout 
-</code></pre>
+          <blockquote>
+<p> 定义：装饰者模式，动态地将责任附加到对象上。若要扩展功能，装饰者提供了比继承更加有弹性的替代方案。<br><a id="more"></a></p>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4></blockquote>
+<p>1、装饰者模式可以提供比继承更多的灵活性。<br>2、可以通过一种动态的方式来扩展一个对象的功能，在运行时选择不同的装饰器，从而实现不同的行为。<br>3、通过使用不同的具体装饰类以及这些装饰类的排列组合，可以创造出很多不同行为的组合。可以使用多个具体装饰类来装饰同一对象，得到功能更为强大的对象。<br>4、具体构件类与具体装饰类可以独立变化，用户可以根据需要增加新的具体构件类和具体装饰类，在使用时再对其进行组合，原有代码无须改变，符合“开闭原则”。</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>1、会产生很多的小对象，增加了系统的复杂性<br>2、这种比继承更加灵活机动的特性，也同时意味着装饰模式比继承更加易于出错，排错也很困难，对于多次装饰的对象，调试时寻找错误可能需要逐级排查，较为烦琐。</p>
+<h4 id="装饰者的使用场景"><a href="#装饰者的使用场景" class="headerlink" title="装饰者的使用场景"></a>装饰者的使用场景</h4><p>1、在不影响其他对象的情况下，以动态、透明的方式给单个对象添加职责。<br>2、需要动态地给一个对象增加功能，这些功能也可以动态地被撤销。<br>当不能采用继承的方式对系统进行扩充或者采用继承不利于系统扩展和维护时。</p>
+
         </div>
       </article>
     </div>
@@ -238,12 +201,12 @@ log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2017/03/15/jvm垃圾收集算法/" rel="prev">下一篇：jvm垃圾收集算法</a>
+              <a href="/2017/05/25/策略模式/" rel="prev">下一篇：策略模式</a>
              </li>
            
            
               <li class="next">
-              <a href="/2017/04/06/机器学习初涉-贝叶斯分类/" rel="prev">上一篇：机器学习初涉--贝叶斯分类</a>
+              <a href="/2017/05/25/工厂模式/" rel="prev">上一篇：工厂模式</a>
             </li>
            
           </ul>

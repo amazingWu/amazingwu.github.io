@@ -32,7 +32,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="maven多级项目使用slf4j+log4j，以及自定义配置文件路径"/>
+      <meta property="og:title" content="工厂模式"/>
   
   <!--Open Graph Description-->
   
@@ -60,7 +60,7 @@
     </script>
   <!-- Title -->
   
-  <title>maven多级项目使用slf4j+log4j，以及自定义配置文件路径 - AmazingWu</title>
+  <title>工厂模式 - AmazingWu</title>
 
 
   <link rel="shortcut icon" href="/favicon.ico">
@@ -173,61 +173,54 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            maven多级项目使用slf4j+log4j，以及自定义配置文件路径
+            工厂模式
             
           </h1>
          
         </div>
          <p class="a-posted-on">
-          2017-03-23
+          2017-05-25
           </p>
 		  <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>我的maven多级结构如下：</p>
-<pre><code>sysimple
-    |--integration
-    |--commons
-        |--pom.xml
-    |--plugins
-        |--pom.xml
-    |--web
-        |--pom.xml
-    |--pom.xml
-</code></pre><p>其中依赖情况是： <a id="more"></a><br>web依赖于commons和plugins。plugins依赖于commons。integration中定义了打包的方法与资源文件。</p>
-<p>首先在sysimple/pom.xml中管理slf4j的版本：</p>
-<pre><code>在&lt;dependencyManagement&gt;&lt;/dependencyManagement&gt;中间添加：
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-         &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-         &lt;version&gt;1.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-         &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-         &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-         &lt;version&gt;1.7.7&lt;/version&gt;
-    &lt;/dependency&gt;
-</code></pre><p>由于所有的模块均引用commons，因此只需要在commons中添加slf4j的依赖即可：</p>
-<pre><code>&lt;dependency&gt;
-     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-     &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-     &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-     &lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre><p>下面即可使用slf4j，在需要使用的地方以如下方式使用：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StartWeb</span> &#123;</span></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(StartWeb.<span class="keyword">class</span>);</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args)&#123;</div><div class="line">		logger.info(<span class="string">"this is a example"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>默认情况下，slf4j-log4j会在src/main/java中查找log4j.properties，如果需要指定配置文件的位置，需要在启动时手动加入Jvm的参数，我的例子中添加了-Dlog4j.configuration=file:../integration/conf/sysimple-log4j.properties。在使用绝对路径时是不需要使用file:的，linux端也不需要file:。在运行的时候，slf4j会根据你指定的路径去加载配置文件。配置文件的内容我给出以下例子， 读者可以另行查找配置文件的格式：</p>
-<pre><code>log4j.rootLogger=INFO,system.out  
-log4j.appender.system.out=org.apache.log4j.ConsoleAppender  
-log4j.appender.system.out.layout=org.apache.log4j.PatternLayout  
-log4j.appender.system.out.layout.ConversionPattern=SysimpleServer Logger--&gt;%5p{%F:%L}-%m%n 
-log4j.logger.thisProject.file=INFO,thisProject.file.out  
-log4j.appender.thisProject.file.out=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.thisProject.file.out.File=../integration/logs/sysimple-logs.log   
-log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout 
-</code></pre>
+          <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><blockquote>
+<p>所有的工厂模式都用来封装对象的创建。工厂方法模式通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。<br>正式定义：工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。<br><a id="more"></a><br>这里所谓的决定并不是指模式允许子类本身在运行时做决定，而是指在编写创建者类时，不需要知道实际创建的产品是哪一个。</p>
+</blockquote>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><blockquote>
+<p>　定义：抽象工厂模式提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>工厂方法模式</th>
+<th>抽象工厂模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>针对的是一个产品等级结构</td>
+<td>针对的是面向多个产品等级结构</td>
+</tr>
+<tr>
+<td>一个抽象产品类</td>
+<td>多个抽象产品类</td>
+</tr>
+<tr>
+<td>可以派生出多个具体产品类</td>
+<td>每个抽象产品类可以派生出多个具体产品类</td>
+</tr>
+<tr>
+<td>一个抽象工厂类，可以派生出多个具体工厂类</td>
+<td>一个抽象工厂类，可以派生出多个具体工厂类</td>
+</tr>
+<tr>
+<td>每个具体工厂类只能创建一个具体产品类的实例</td>
+<td>每个具体工厂类可以创建多个具体产品类的实例</td>
+</tr>
+</tbody>
+</table>
+
         </div>
       </article>
     </div>
@@ -238,12 +231,12 @@ log4j.appender.thisProject.file.out.layout=org.apache.log4j.PatternLayout
            <ul class="pager">
     	     
       	     <li class="previous">
-              <a href="/2017/03/15/jvm垃圾收集算法/" rel="prev">下一篇：jvm垃圾收集算法</a>
+              <a href="/2017/05/25/装饰者模式/" rel="prev">下一篇：装饰者模式</a>
              </li>
            
            
               <li class="next">
-              <a href="/2017/04/06/机器学习初涉-贝叶斯分类/" rel="prev">上一篇：机器学习初涉--贝叶斯分类</a>
+              <a href="/2017/05/25/观察者模式/" rel="prev">上一篇：观察者模式</a>
             </li>
            
           </ul>
