@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://amazingwu.xyz/2017/05/25/%E7%94%A8%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%B2%E8%A7%A3KMP%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2017-05-25T09:12:59.723Z</lastmod>
+    <data>
+        <display>
+        <title>用简单的方式讲解KMP算法</title>
+        <pubTime>2017-05-25T09:00:06.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+        <tag>字符串</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="http://amazingwu.xyz/categories/%E7%AE%97%E6%B3%95/"/>
+          
+             
+              <breadCrumb title="字符串" url="http://amazingwu.xyz/categories/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://amazingwu.xyz/2017/05/22/%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85/</loc>
     <lastmod>2017-05-22T06:09:23.033Z</lastmod>
     <data>
@@ -322,9 +347,9 @@
         <title>动态规划-DAG-硬币问题</title>
         <pubTime>2017-04-17T13:37:21.000Z</pubTime>
         
-        <tag>动态规划</tag>
-         
         <tag>算法</tag>
+         
+        <tag>动态规划</tag>
          
          
            
