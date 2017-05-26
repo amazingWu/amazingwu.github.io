@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="动态规划,编程刷题," />
 
 
 
@@ -86,17 +86,19 @@
 
 
 
-<meta name="description" content="工厂模式所有的工厂模式都用来封装对象的创建。工厂方法模式通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。正式定义：工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="Given an array, an inversion is defined as a pair a[i], a[j] such that a[i] &amp;gt; a[j] and i &amp;lt; j. We are given two numbers N and k, we need to tell how many permutation of first N number have exactl">
+<meta name="keywords" content="动态规划,编程刷题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="工厂模式">
-<meta property="og:url" content="http://amazingwu.xyz/2017/05/25/工厂模式/index.html">
+<meta property="og:title" content="Number of permutation with K inversions">
+<meta property="og:url" content="http://amazingwu.xyz/2017/05/26/Number-of-permutation-with-K-inversions/index.html">
 <meta property="og:site_name" content="AmazingWu">
-<meta property="og:description" content="工厂模式所有的工厂模式都用来封装对象的创建。工厂方法模式通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。正式定义：工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。">
-<meta property="og:updated_time" content="2017-05-25T14:07:33.742Z">
+<meta property="og:description" content="Given an array, an inversion is defined as a pair a[i], a[j] such that a[i] &amp;gt; a[j] and i &amp;lt; j. We are given two numbers N and k, we need to tell how many permutation of first N number have exactl">
+<meta property="og:image" content="http://img.blog.csdn.net/20170526235043758">
+<meta property="og:updated_time" content="2017-05-26T15:53:59.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="工厂模式">
-<meta name="twitter:description" content="工厂模式所有的工厂模式都用来封装对象的创建。工厂方法模式通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。正式定义：工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。">
+<meta name="twitter:title" content="Number of permutation with K inversions">
+<meta name="twitter:description" content="Given an array, an inversion is defined as a pair a[i], a[j] such that a[i] &amp;gt; a[j] and i &amp;lt; j. We are given two numbers N and k, we need to tell how many permutation of first N number have exactl">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170526235043758">
 <!--百度统计-->
 <script>
 var _hmt = _hmt || [];
@@ -134,13 +136,13 @@ var _hmt = _hmt || [];
 
 
 
-  <link rel="canonical" href="http://amazingwu.xyz/2017/05/25/工厂模式/"/>
+  <link rel="canonical" href="http://amazingwu.xyz/2017/05/26/Number-of-permutation-with-K-inversions/"/>
 
 
 
 
 
-  <title> 工厂模式 | AmazingWu </title>
+  <title> Number of permutation with K inversions | AmazingWu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -322,7 +324,7 @@ var _hmt = _hmt || [];
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://amazingwu.xyz/2017/05/25/工厂模式/">
+    <link itemprop="mainEntityOfPage" href="http://amazingwu.xyz/2017/05/26/Number-of-permutation-with-K-inversions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="AmazingWu">
@@ -343,7 +345,7 @@ var _hmt = _hmt || [];
             
             
               
-                工厂模式
+                Number of permutation with K inversions
               
             
           </h1>
@@ -358,8 +360,8 @@ var _hmt = _hmt || [];
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-25T21:51:17+08:00">
-                2017-05-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-26T23:17:09+08:00">
+                2017-05-26
               </time>
             
 
@@ -368,6 +370,39 @@ var _hmt = _hmt || [];
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程刷题/" itemprop="url" rel="index">
+                    <span itemprop="name">编程刷题</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程刷题/动态规划/" itemprop="url" rel="index">
+                    <span itemprop="name">动态规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -412,40 +447,21 @@ var _hmt = _hmt || [];
       
 
       
-        <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>所有的工厂模式都用来封装对象的创建。工厂方法模式通过让子类决定该创建的对象是什么，来达到将对象创建的过程封装的目的。<br>正式定义：工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。<br><a id="more"></a><br>这里所谓的决定并不是指模式允许子类本身在运行时做决定，而是指在编写创建者类时，不需要知道实际创建的产品是哪一个。</p>
-<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><blockquote>
-<p>　定义：抽象工厂模式提供一个接口，用于创建相关或依赖对象的家族，而不需要明确指定具体类。</p>
+        <p>Given an array, an inversion is defined as a pair a[i], a[j] such that a[i] &gt; a[j] and i &lt; j. We are given two numbers N and k, we need to tell how many permutation of first N number have exactly K inversion.</p>
+<p>给定一个数组，inversion被定义为a [i]，a [j]，使得[i]&gt; a [j]和i &lt; j。 我们给出两个数字N和k，我们需要计算出 N 个数的排列有多少个正好是K个inversion。</p>
+<blockquote>
+<p>例如:<br>输入  : N = 3, K = 1<br>输出 : 2<br>Explanation :<br>全部的可能情况：<br>123, 132, 213, 231, 312, 321<br>符合条件的情况 : 132 and 213</p>
+<p>输入  : N = 4, K = 2</p>
+<p>输出 : 2</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th>工厂方法模式</th>
-<th>抽象工厂模式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>针对的是一个产品等级结构</td>
-<td>针对的是面向多个产品等级结构</td>
-</tr>
-<tr>
-<td>一个抽象产品类</td>
-<td>多个抽象产品类</td>
-</tr>
-<tr>
-<td>可以派生出多个具体产品类</td>
-<td>每个抽象产品类可以派生出多个具体产品类</td>
-</tr>
-<tr>
-<td>一个抽象工厂类，可以派生出多个具体工厂类</td>
-<td>一个抽象工厂类，可以派生出多个具体工厂类</td>
-</tr>
-<tr>
-<td>每个具体工厂类只能创建一个具体产品类的实例</td>
-<td>每个具体工厂类可以创建多个具体产品类的实例</td>
-</tr>
-</tbody>
-</table>
+<p>解法的伪代码如下：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">If</span> <span class="keyword">N</span> is <span class="number">0</span>, <span class="keyword">Count</span>(<span class="number">0</span>, <span class="keyword">K</span>) = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">If</span> <span class="keyword">K</span> is <span class="number">0</span>, <span class="keyword">Count</span>(<span class="keyword">N</span>, <span class="number">0</span>) = <span class="number">1</span> (Only sorted array)</div><div class="line"></div><div class="line"><span class="keyword">In</span> general case, </div><div class="line"><span class="keyword">If</span> we have <span class="keyword">N</span> number and require <span class="keyword">K</span> inversion, </div><div class="line"><span class="keyword">Count</span>(<span class="keyword">N</span>, <span class="keyword">K</span>) = <span class="keyword">Count</span>(<span class="keyword">N</span> - <span class="number">1</span>, <span class="keyword">K</span>) + </div><div class="line">              <span class="keyword">Count</span>(<span class="keyword">N</span> – <span class="number">1</span>, <span class="keyword">K</span> - <span class="number">1</span>) + </div><div class="line">              <span class="keyword">Count</span>(<span class="keyword">N</span> – <span class="number">1</span>, <span class="keyword">K</span> – <span class="number">2</span>) + </div><div class="line">              .... + </div><div class="line">              <span class="keyword">Count</span>(<span class="keyword">N</span> – <span class="number">1</span>, <span class="number">0</span>)</div></pre></td></tr></table></figure></p>
+<p>其解法思想如下：</p>
+<p>如果我们有N个数并希望有K个inversion，并且假设（N-1）个数的所有inversion写在某个地方，那么新数（第N个数，即最大的数）需要被置于（N-1）个数的所有inversion中，在我们的答案中应该加上那些inversion计数变为K后的组合。 </p>
+<p>简单的说就是将第N个数插入在前N-1个数的所有组合中，将inversion=k的情况相加。<br>下面给出了各个情况的示意图： </p>
+<ol>
+<li>前n-1个已经组成了inversions=k，则第n个只需要插入在最后。<br><img src="http://img.blog.csdn.net/20170526235043758" alt="image">  </li>
+<li>前n-1个已经组成了inversions=k-1，则第n个需要往前插一位，让inversions=k。</li>
+</ol>
 
       
 	  
@@ -476,7 +492,9 @@ var _hmt = _hmt || [];
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/编程刷题/" rel="tag"># 编程刷题</a>
           
         </div>
       
@@ -489,18 +507,14 @@ var _hmt = _hmt || [];
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/25/观察者模式/" rel="next" title="观察者模式">
-                <i class="fa fa-chevron-left"></i> 观察者模式
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/25/装饰者模式/" rel="prev" title="装饰者模式">
-                装饰者模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/25/编程刷题-1/" rel="prev" title="编程刷题-1">
+                编程刷题-1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -576,17 +590,8 @@ var _hmt = _hmt || [];
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/header.png"
@@ -707,22 +712,6 @@ var _hmt = _hmt || [];
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂模式"><span class="nav-number">1.</span> <span class="nav-text">工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">2.</span> <span class="nav-text">抽象工厂模式</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
