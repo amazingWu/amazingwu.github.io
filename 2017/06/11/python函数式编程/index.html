@@ -70,7 +70,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="AmazingWu, Blog" />
+  <meta name="keywords" content="python,函数式编程," />
 
 
 
@@ -86,17 +86,17 @@
 
 
 
-<meta name="description" content="目前就读于北京理工大学软件学院">
-<meta name="keywords">
+<meta name="description" content="Python语言中，用于函数式编程的主要由3个基本函数和1个算子。  基本函数：map()、reduce()、filter()   算子(operator)：lambda  Python函数式编程的基本单元lambdalambda这个关键词在很多语言中都存在。简单地说，它可以实现函数创建的功能。 如下便是lambda的两种使用方式。 123func1 = lambda : &amp;lt;expressi">
+<meta name="keywords" content="python,函数式编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python函数式编程">
 <meta property="og:url" content="http://amazingwu.xyz/2017/06/11/python函数式编程/index.html">
 <meta property="og:site_name" content="AmazingWu">
-<meta property="og:description" content="目前就读于北京理工大学软件学院">
-<meta property="og:updated_time" content="2017-06-11T12:47:31.669Z">
+<meta property="og:description" content="Python语言中，用于函数式编程的主要由3个基本函数和1个算子。  基本函数：map()、reduce()、filter()   算子(operator)：lambda  Python函数式编程的基本单元lambdalambda这个关键词在很多语言中都存在。简单地说，它可以实现函数创建的功能。 如下便是lambda的两种使用方式。 123func1 = lambda : &amp;lt;expressi">
+<meta property="og:updated_time" content="2017-06-25T03:33:11.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python函数式编程">
-<meta name="twitter:description" content="目前就读于北京理工大学软件学院">
+<meta name="twitter:description" content="Python语言中，用于函数式编程的主要由3个基本函数和1个算子。  基本函数：map()、reduce()、filter()   算子(operator)：lambda  Python函数式编程的基本单元lambdalambda这个关键词在很多语言中都存在。简单地说，它可以实现函数创建的功能。 如下便是lambda的两种使用方式。 123func1 = lambda : &amp;lt;expressi">
 <!--百度统计-->
 <script>
 var _hmt = _hmt || [];
@@ -369,6 +369,39 @@ var _hmt = _hmt || [];
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/函数式编程/" itemprop="url" rel="index">
+                    <span itemprop="name">函数式编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -412,7 +445,79 @@ var _hmt = _hmt || [];
       
 
       
-        
+        <p>Python语言中，用于函数式编程的主要由3个基本函数和1个算子。</p>
+<ul>
+<li>基本函数：map()、reduce()、filter()  </li>
+<li>算子(operator)：lambda</li>
+</ul>
+<h1 id="Python函数式编程的基本单元"><a href="#Python函数式编程的基本单元" class="headerlink" title="Python函数式编程的基本单元"></a>Python函数式编程的基本单元</h1><h2 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h2><p>lambda这个关键词在很多语言中都存在。简单地说，它可以实现函数创建的功能。</p>
+<p>如下便是lambda的两种使用方式。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="attr">func1</span> = lambda : &lt;expression()&gt;</div><div class="line"><span class="attr">func2</span> = lambda x : &lt;expression(x)&gt;</div><div class="line"><span class="attr">func3</span> = lambda x,y : &lt;expression(x,y)&gt;</div></pre></td></tr></table></figure>
+<p>在第一条语句中，采用lambda创建了一个无参的函数func1。这和下面采用def创建函数的效果是相同的。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">func1</span><span class="params">()</span></span>:</div><div class="line">    &lt;expression()&gt;</div></pre></td></tr></table></figure>
+<p>第二个语句和第三个语句分别传入一个和两个参数，我想不用解释也就懂了。</p>
+<p>需要注意的是，调用func1的时候，虽然不需要传入参数，但是必须要带有括号()，否则返回的只是函数的定义，而非函数执行的结果。这个和在ruby中调用无参函数时有所不同，希望ruby程序员引起注意。  </p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; <span class="function"><span class="keyword">func</span> = <span class="title">lambda</span> : 123</span></div><div class="line">&gt;&gt;&gt; <span class="function"><span class="keyword">func</span></span></div><div class="line">&lt;function &lt;lambda&gt; at <span class="number">0x100f4e1b8</span>&gt;</div><div class="line">&gt;&gt;&gt; <span class="function"><span class="keyword">func</span><span class="params">()</span></span></div><div class="line"><span class="number">123</span></div></pre></td></tr></table></figure>
+<p>另外，虽然在上面例子中都将lambda创建的函数赋值给了一个函数名，但这并不是必须的。从下面的例子中大家可以看到，很多时候我们都是直接调用lambda创建的函数，而并没有命名一个函数，这也是我们常听说的匿名函数的由来。</p>
+<h2 id="map"><a href="#map" class="headerlink" title="map()"></a>map()</h2><p>map()函数的常见调用形式如下所示：</p>
+<blockquote>
+<p>　map(func, iterable)</p>
+</blockquote>
+<p>map()需要两个必填参数，第一个参数是一个函数名，第二个参数是一个可迭代的对象，如列表、元组等。</p>
+<p>map()实现的功能很简单，就是将第二个参数（iterable）中的每一个元素分别传给第一个参数（func），依次执行函数得到结果，并将结果组成一个新的list对象后进行返回。返回结果永远都是一个list。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; double_func = lambda s : s * <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; map(double_func, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</div><div class="line">[<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>, <span class="number">10</span>]</div></pre></td></tr></table></figure>
+<p>除了传入一个可迭代对象这种常见的模式外，map()还支持传入多个可迭代对象。</p>
+<blockquote>
+<p>map(func, iterable1, iterable2)</p>
+</blockquote>
+<p>在传入多个可迭代对象的情况下，map()会依次从所有可迭代对象中依次取一个元素，组成一个元组列表，然后将元组依次传给func；若可迭代对象的长度不一致，则会以None进行补上。</p>
+<p>通过以下示例应该就比较容易理解。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; plus = lambda x,y : (x or <span class="number">0</span>) + (y or <span class="number">0</span>)</div><div class="line">&gt;&gt;&gt; map(plus, <span class="string">[1,2,3]</span>, <span class="string">[4,5,6]</span>)</div><div class="line"><span class="string">[5, 7, 9]</span></div><div class="line">&gt;&gt;&gt; map(plus, <span class="string">[1,2,3,4]</span>, <span class="string">[4,5,6]</span>)</div><div class="line"><span class="string">[5, 7, 9, 4]</span></div><div class="line">&gt;&gt;&gt; map(plus, <span class="string">[1,2,3]</span>, <span class="string">[4,5,6,7]</span>)</div><div class="line"><span class="string">[5, 7, 9, 7]</span></div></pre></td></tr></table></figure>
+<p>在上面的例子中，之所以采用x or 0的形式，是为了防止None + int出现异常。</p>
+<p>需要注意的是，可迭代对象的个数应该与func的参数个数一致，否则就会出现异常，因为传参个数与函数参数个数不一致了，这个应该比较好理解。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; plus = lambda x,y : x + y</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; map(plus, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;<span class="class"><span class="keyword">module</span>&gt;</span></div><div class="line"><span class="symbol">TypeError:</span> &lt;lambda&gt;() takes exactly <span class="number">2</span> arguments (<span class="number">1</span> given)</div></pre></td></tr></table></figure>
+<p>另外，map()还存在一种特殊情况，就是func为None。这个时候，map()仍然是从所有可迭代对象中依次取一个元素，组成一个元组列表，然后将这个元组列表作为结果进行返回。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; map(None, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</div><div class="line">&gt;&gt;&gt; map(None, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>])</div><div class="line">[(<span class="number">1</span>, <span class="number">5</span>), (<span class="number">2</span>, <span class="number">6</span>), (<span class="number">3</span>, <span class="number">7</span>), (<span class="number">4</span>, <span class="number">8</span>)]</div><div class="line">&gt;&gt;&gt; map(None, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>])</div><div class="line">[(<span class="number">1</span>, <span class="number">5</span>), (<span class="number">2</span>, <span class="number">6</span>), (<span class="number">3</span>, <span class="number">7</span>), (<span class="number">4</span>, None)]</div><div class="line">&gt;&gt;&gt; map(None, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], [<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>], [<span class="number">11</span>,<span class="number">12</span>])</div><div class="line">[(<span class="number">1</span>, <span class="number">6</span>, <span class="number">11</span>), (<span class="number">2</span>, <span class="number">7</span>, <span class="number">12</span>), (<span class="number">3</span>, <span class="number">8</span>, None), (<span class="number">4</span>, <span class="number">9</span>, None)]</div></pre></td></tr></table></figure>
+<h2 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce()"></a>Reduce()</h2><p>reduce()函数的调用形式如下所示：</p>
+<blockquote>
+<p>reduce(func, iterable[, initializer])</p>
+</blockquote>
+<p>reduce()函数的功能是对可迭代对象（iterable）中的元素从左到右进行累计运算，最终得到一个数值。第三个参数initializer是初始数值，可以空置，空置为None时就从可迭代对象（iterable）的第二个元素开始，并将第一个元素作为初始化的结果。</p>
+<p>文字描述可能不大清楚，看下reduce()的源码应该就比较清晰了。</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def reduce(<span class="keyword">function</span>, iterable, initializer=None):</div><div class="line">    it = iter(iterable)</div><div class="line">    <span class="keyword">if</span> initializer <span class="keyword">is</span> None:</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            initializer = next(it)</div><div class="line">        except StopIteration:</div><div class="line">            raise TypeError(<span class="string">'reduce() of empty sequence with no initial value'</span>)</div><div class="line">    accum<span class="number">_</span><span class="keyword">value</span> = initializer</div><div class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> it:</div><div class="line">        accum<span class="number">_</span><span class="keyword">value</span> = <span class="keyword">function</span>(accum<span class="number">_</span><span class="keyword">value</span>, x)</div><div class="line">    <span class="keyword">return</span> accum<span class="number">_</span><span class="keyword">value</span></div></pre></td></tr></table></figure>
+<p>再加上如下示例，对reduce()的功能应该就能掌握了</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; plus = lambda x, y : x + y</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; reduce(plus, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</div><div class="line"><span class="number">15</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; reduce(plus, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>], <span class="number">10</span>)</div><div class="line"><span class="number">25</span></div></pre></td></tr></table></figure>
+<h2 id="filter"><a href="#filter" class="headerlink" title="filter()"></a>filter()</h2><p>filter()函数的调用形式如下：</p>
+<blockquote>
+<p>filter(func, iterable)</p>
+</blockquote>
+<p>filter()有且仅有两个参数，第一个参数是一个函数名，第二个参数是一个可迭代的对象，如列表、元组等。</p>
+<p>filter()函数的调用形式与map()比较相近，都是将第二个参数（iterable）中的每一个元素分别传给第一个参数（func），依次执行函数得到结果；差异在于，filter()会判断每次执行结果的bool值，并只将bool值为true的筛选出来，组成一个新的列表并进行返回。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; mode2 = lambda x : x % <span class="number">2</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; filter(mode2, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>])</div><div class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</div></pre></td></tr></table></figure>
+<p>以上便是Python函数式编程基本单元的核心内容。</p>
+<p>接下来，我们就开始尝试采用新学习到的基本单元对命令式编程中的条件控制和循环控制进行转换。</p>
+<h1 id="替换条件控制语句"><a href="#替换条件控制语句" class="headerlink" title="替换条件控制语句"></a>替换条件控制语句</h1><p>在对条件控制进行替换之前，我们先来回顾下Python中对布尔表达式求值时进行的“短路”处理。</p>
+<p>什么叫“短路”处理？简单地讲，就是如下两点：</p>
+<ul>
+<li>在f(x) and g(y)中，当f(x)为false时，不会再执行g(y)，直接返回false</li>
+<li>在f(x) or g(y)中，当f(x)为true时，不会再执行g(y)，直接返回true</li>
+</ul>
+<p>结论是显然易现的，就不再过多解释。</p>
+<p>那么，对应到条件控制语句，我们不难理解，如下条件控制语句和表达式是等价的。</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr"># flow control statement</span></div><div class="line">if &lt;cond1&gt;:   fu<span class="symbol">nc1</span><span class="comment">()</span></div><div class="line">elif &lt;co<span class="symbol">nd2</span>&gt;: fu<span class="symbol">nc2</span><span class="comment">()</span></div><div class="line">else:         fu<span class="symbol">nc3</span><span class="comment">()</span></div></pre></td></tr></table></figure>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># Equivalent <span class="string">"short circuit"</span> expression</div><div class="line">(<span class="name">&lt;cond1&gt;</span> and func1()) or (<span class="name">&lt;cond2&gt;</span> and func2()) or (<span class="name">func3</span>())</div></pre></td></tr></table></figure>
+<p>通过这个等价替换，我们就去除掉了if/elif/else关键词，将条件控制语句转换为一个表达式。那这个表达式和函数式编程有什么关系呢？</p>
+<p>这时我们回顾上面讲过的lambda，会发现lambda算子返回的就是一个表达式。</p>
+<p>基于这一点，我们就可以采用lambda创建如下函数。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; pr = lambda <span class="symbol">s:</span>s</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print_num = lambda <span class="symbol">x:</span> (x==<span class="number">1</span> and pr(<span class="string">"one"</span>)) </div><div class="line">....                  <span class="keyword">or</span> (x==<span class="number">2</span> <span class="keyword">and</span> pr(<span class="string">"two"</span>)) </div><div class="line">....                  <span class="keyword">or</span> (pr(<span class="string">"other"</span>))</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print_num(<span class="number">1</span>)</div><div class="line"><span class="string">'one'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print_num(<span class="number">2</span>)</div><div class="line"><span class="string">'two'</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; print_num(<span class="number">3</span>)</div><div class="line"><span class="string">'other'</span></div></pre></td></tr></table></figure>
+<p>通过函数调用的结果可以看到，以上函数实现的功能与之前的条件控制语句实现的功能完全相同。</p>
+<p>到这里，我们就实现了命令式条件控制语句向函数式语句的转换。并且这个转换的方法是通用的，所有条件控制语句都可以采用这种方式转换为函数式语句。</p>
+<h1 id="替换循环控制语句"><a href="#替换循环控制语句" class="headerlink" title="替换循环控制语句"></a>替换循环控制语句</h1><p>接下来我们再看循环控制语句的转换。在Python中，循环控制是通过for和while这两种方式实现的。</p>
+<h2 id="替换for循环"><a href="#替换for循环" class="headerlink" title="替换for循环"></a>替换for循环</h2><p>for循环语句的替换十分简单，采用map()函数就能轻松实现。这主要是因为for语句和map()原理相同，都是对可迭代对象里面的每一个元素进行操作，因此转换过程比较自然。</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># statement-based for loop</span></div><div class="line"><span class="keyword">for</span> e <span class="keyword">in</span> lst:  <span class="function"><span class="keyword">func</span><span class="params">(e)</span></span></div><div class="line"> </div><div class="line"><span class="meta"># Equivalent map()-based loop</span></div><div class="line">map(<span class="function"><span class="keyword">func</span>, <span class="title">lst</span>)</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;</span>&gt; square = lambda x : x * x</div><div class="line"><span class="meta">&gt;&gt;</span>&gt; for x in [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]: square(x)</div><div class="line">...</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">9</span></div><div class="line"><span class="number">16</span></div><div class="line"><span class="number">25</span></div><div class="line"><span class="meta">&gt;&gt;</span>&gt; map(square, [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</div><div class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>]</div></pre></td></tr></table></figure>
+<h2 id="替换while循环"><a href="#替换while循环" class="headerlink" title="替换while循环"></a>替换while循环</h2><p>了解了while的循环替代后，我的直觉是以后应该不会用到吧，可能是我目前只是一个python小白，目前这块就不贴出来了，网上有很多教程，譬如<a href="http://python.jobbole.com/84927/" target="_blank" rel="external">Python的函数式编程，从入门到⎡放弃⎦</a></p>
+
       
 	  
     </div>
@@ -439,6 +544,14 @@ var _hmt = _hmt || [];
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+        </div>
       
 
       
@@ -536,8 +649,17 @@ var _hmt = _hmt || [];
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/header.png"
@@ -552,7 +674,7 @@ var _hmt = _hmt || [];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -563,7 +685,7 @@ var _hmt = _hmt || [];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -658,6 +780,22 @@ var _hmt = _hmt || [];
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python函数式编程的基本单元"><span class="nav-number">1.</span> <span class="nav-text">Python函数式编程的基本单元</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#lambda"><span class="nav-number">1.1.</span> <span class="nav-text">lambda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">1.2.</span> <span class="nav-text">map()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reduce"><span class="nav-number">1.3.</span> <span class="nav-text">Reduce()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter"><span class="nav-number">1.4.</span> <span class="nav-text">filter()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#替换条件控制语句"><span class="nav-number">2.</span> <span class="nav-text">替换条件控制语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#替换循环控制语句"><span class="nav-number">3.</span> <span class="nav-text">替换循环控制语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#替换for循环"><span class="nav-number">3.1.</span> <span class="nav-text">替换for循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替换while循环"><span class="nav-number">3.2.</span> <span class="nav-text">替换while循环</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
